@@ -62,6 +62,14 @@ public class TouchManager : MonoBehaviour
                     break;
                 }
 
+                // Stationary movement cancells swipe
+                case TouchPhase.Stationary: {
+                    if (m_bIsSwiping) {
+                        m_bIsSwiping = false;
+                    }
+                    break;
+                }
+
                 // A swipe is cancelled 
                 case TouchPhase.Canceled: {
                     m_bIsSwiping = false;
