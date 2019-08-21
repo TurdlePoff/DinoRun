@@ -17,21 +17,25 @@ public class PlayerMovement : MonoBehaviour
 
     // RigidBody
     private Rigidbody m_Myrigidbody;
+    private Vector3 m_vStartXZ = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         // Ste up the default values
         m_Myrigidbody = GetComponent<Rigidbody>();
+        m_Myrigidbody.centerOfMass = m_Myrigidbody.centerOfMass + new Vector3(0.0f, 0.0f, 0.5f);
         m_vHalfScale = transform.localScale / 2.0f;
         m_vDefaultScale = transform.localScale;
+        m_vStartXZ = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //transform.position = new Vector3(m_vStartXZ.x, transform.position.y, m_vStartXZ.z);
         // Scales the ducking
-        if(m_bDucking)
+        if (m_bDucking)
         {
             transform.localScale = Vector3.SmoothDamp(transform.localScale, m_vHalfScale, ref m_vScaleVelocity, 0.5f);
 

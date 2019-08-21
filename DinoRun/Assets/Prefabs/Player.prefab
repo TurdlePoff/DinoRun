@@ -13,6 +13,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 5.2123556, z: 12.271081}
   m_Center: {x: 9.080566e-16, y: 2.5420012, z: -0.93610096}
+--- !u!54 &2667718330466537102
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084658723988390191}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 10
+  m_CollisionDetection: 0
+--- !u!114 &155646977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084658723988390191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052bc1948f0f0be4d96c54656cfd737a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fDuckingTimeDelay: 1
+  m_fPlayerJumpHeight: 300
+  m_fPlayerHighJumpHeight: 30
 --- !u!1001 &3084658723988359155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22,15 +53,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
       propertyPath: m_Name
-      value: Velociraptor
+      value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 59cbefebaa8ff4e4d957a267c38ce04d, type: 2}
     - target: {fileID: 400060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.056
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
       propertyPath: m_LocalPosition.z
@@ -68,10 +103,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 59cbefebaa8ff4e4d957a267c38ce04d, type: 2}
+    - target: {fileID: 400060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9ffbff3eaebf04e8ffbf703ae66b51, type: 3}
 --- !u!1 &3084658723988390191 stripped
