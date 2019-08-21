@@ -49,15 +49,31 @@ public class PlayerMovement : MonoBehaviour
     // Normal Jumping
     public void PlayerJump()
     {
-        print("Jump");
-        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight, ForceMode.Impulse);
+        print("Jump Attempt");
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight, ForceMode.Impulse);
+            }
+        }
     }
 
     // High Jumping
     public void PlayerHighJump()
     {
-        print("High Jump");
-        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+        print("High Jump Attempt");
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+            }
+        }
     }
 
     // Ducking
