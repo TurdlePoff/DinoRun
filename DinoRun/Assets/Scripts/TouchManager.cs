@@ -10,6 +10,8 @@ public class TouchManager : MonoBehaviour
 
     [SerializeField]
     private Camera m_rCamera = null;
+    [SerializeField][Tooltip("The minimum distance a touch must move to count as a swipe.")]
+    private float m_fSwipeDistance = 10.0f;
     private Touch m_LastTouch;
     private Touch[] m_Touches;
     private bool m_bIsSwiping = false;
@@ -79,7 +81,7 @@ public class TouchManager : MonoBehaviour
         Vector2 swipe = m_LastTouch.deltaPosition;
 
         // Assess magnitude
-        if (swipe.sqrMagnitude > 0.01f) {
+        if (swipe.sqrMagnitude >= m_fSwipeDistance) {
             // Assess y direction for swipe
             if (swipe.y > 0.0f) {
                 onSwipeUp.Invoke();
