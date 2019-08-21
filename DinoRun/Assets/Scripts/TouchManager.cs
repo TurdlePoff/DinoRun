@@ -34,8 +34,8 @@ public class TouchManager : MonoBehaviour
 
                 // A tap
                 case TouchPhase.Began: {
-                    print("Tap event");
-                    onTap.Invoke();
+                    //print("Tap event");
+                    //onTap.Invoke();
                     break;
                 }
 
@@ -53,6 +53,8 @@ public class TouchManager : MonoBehaviour
                         CheckForSwipeEvent();
                         // We are now no longer swiping
                         m_bIsSwiping = false;
+                    } else {
+                        onTap.Invoke();
                     }
                                        
                     break;
@@ -77,7 +79,7 @@ public class TouchManager : MonoBehaviour
         Vector2 swipe = m_LastTouch.deltaPosition;
 
         // Assess magnitude
-        if (swipe.sqrMagnitude > 0.0f) {
+        if (swipe.sqrMagnitude > 0.01f) {
             // Assess y direction for swipe
             if (swipe.y > 0.0f) {
                 onSwipeUp.Invoke();
