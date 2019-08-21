@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_vScaleVelocity = Vector3.zero;
 
     // Jumping
-    public float m_fPlayerJumpHeight = 300.0f;
-    public float m_fPlayerHighJumpHeight = 30.0f;
+    public float m_fPlayerJumpHeight = 5.0f;
+    public float m_fPlayerHighJumpHeight = 7.5f;
 
     // RigidBody
     private Rigidbody m_Myrigidbody;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Ste up the default values
         m_Myrigidbody = GetComponent<Rigidbody>();
-        m_Myrigidbody.centerOfMass = m_Myrigidbody.centerOfMass + new Vector3(0.0f, 0.0f, 0.5f);
+        //m_Myrigidbody.centerOfMass = m_Myrigidbody.centerOfMass + new Vector3(0.0f, 0.0f, 0.5f);
         m_vHalfScale = transform.localScale / 2.0f;
         m_vDefaultScale = transform.localScale;
         m_vStartXZ = transform.position;
@@ -50,14 +50,14 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerJump()
     {
         print("Jump");
-        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight);
+        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight, ForceMode.Impulse);
     }
 
     // High Jumping
     public void PlayerHighJump()
     {
         print("High Jump");
-        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight);
+        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
     }
 
     // Ducking

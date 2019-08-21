@@ -38,6 +38,19 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         }
     }
 
+    public void SkippableVideoAd()
+    {
+        OnUnityAdsReady(video_ad);
+    }
+    public void RewardedVideoAd()
+    {
+        OnUnityAdsReady(rewarded_video_ad);
+    }
+    public void BannerAd()
+    {
+        OnUnityAdsReady(banner_ad);
+    }
+
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
         // Define conditional logic for each ad completion status:
