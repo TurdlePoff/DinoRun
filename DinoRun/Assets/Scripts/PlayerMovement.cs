@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         m_vStartXZ = transform.position;
 
         GetComponent<Animator>().SetTrigger("StartRunning");
-        GetComponent<Animator>().speed = 0.4f;
+        GetComponent<Animator>().speed = 1.0f;
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag.Contains("Floor"))
                 {
-                    GetComponent<Animator>().speed = 0.4f;
+                    GetComponent<Animator>().speed = 1.0f;
                 }
             }
         }
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerJump()
     {
         GetComponent<Animator>().SetTrigger("Jump");
-        GetComponent<Animator>().speed = 2.0f;
+        GetComponent<Animator>().speed = 1.0f;
 
         print("Jump Attempt");
         RaycastHit hit;
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerHighJump()
     {
         GetComponent<Animator>().SetTrigger("Jump");
-        GetComponent<Animator>().speed = 2.0f;
+        GetComponent<Animator>().speed = 1.0f;
 
         print("High Jump Attempt");
         RaycastHit hit;
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         m_bJumpEnd = false;
-        Invoke("EndJump", 3.0f);
+        Invoke("EndJump", 2.0f);
     }
     // End of Jump
     private void EndJump()
