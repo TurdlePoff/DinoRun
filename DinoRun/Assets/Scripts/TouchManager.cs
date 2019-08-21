@@ -12,10 +12,12 @@ public class TouchManager : MonoBehaviour
     private Camera m_rCamera = null;
     private Touch m_LastTouch;
     private Touch[] m_Touches;
+    private bool m_bIsSwiping = false;
 
     [Header("Swipe Events")]
     public UnityEvent onSwipeUp;
     public UnityEvent onSwipeDown;
+    public UnityEvent onTap;
 
     private void Awake() {
         if (!s_rInstance) {
@@ -27,21 +29,60 @@ public class TouchManager : MonoBehaviour
         // Check if a touch event is happening
         if (IsTouching(out m_Touches)) {
             m_LastTouch = Input.GetTouch(0);
-            
-            // Look for the end of a touch event
-            if(m_LastTouch.phase == TouchPhase.Ended) {
-                // See is a swipe happened
-                Vector2 swipe = m_LastTouch.deltaPosition;
 
-                // Assess magnitude
-                if(swipe.sqrMagnitude > 0.0f) {
-                    // Assess y direction for swipe
-                    if(swipe.y > 0.0f) {
-                        onSwipeUp.Invoke();
-                    } else {
-                        onSwipeDown.Invoke();
-                    }
+            switch (m_LastTouch.phase) {
+
+                // A tap
+                case TouchPhase.Began: {
+                    print("Tap event");
+                    onTap.Invoke();
+                    break;
                 }
+
+                // Finger movement should be tracked
+
+                case TouchPhase.Moved: {
+                    m_bIsSwiping = true;
+                    break;
+                }
+
+                // Check for end of a touch event 
+                case TouchPhase.Ended: {
+                    // If we were swiping, check for swipe events
+                    if (m_bIsSwiping) {
+                        CheckForSwipeEvent();
+                        // We are now no longer swiping
+                        m_bIsSwiping = false;
+                    }
+                                       
+                    break;
+                }
+
+                // A swipe is cancelled 
+                case TouchPhase.Canceled: {
+                    m_bIsSwiping = false;
+                    break;
+                }
+
+                default:break;
+            }
+
+        }
+    }
+
+    /// <summary>
+    /// Assesses if a swipe event has happened in the up or down direction, and invokes respective functions
+    /// </summary>
+    private void CheckForSwipeEvent() {
+        Vector2 swipe = m_LastTouch.deltaPosition;
+
+        // Assess magnitude
+        if (swipe.sqrMagnitude > 0.0f) {
+            // Assess y direction for swipe
+            if (swipe.y > 0.0f) {
+                onSwipeUp.Invoke();
+            } else {
+                onSwipeDown.Invoke();
             }
         }
     }
