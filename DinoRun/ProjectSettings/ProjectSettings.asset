@@ -244,7 +244,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: E:/user.keystore
+  AndroidKeystoreName: D:/Users/kerry.pel7420/Desktop/user.keystore
   AndroidKeyaliasName: speedyboi
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
