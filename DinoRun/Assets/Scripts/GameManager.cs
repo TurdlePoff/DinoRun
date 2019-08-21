@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public static bool InitialiseGooglePlay() {
         // Activate PlayGames platform and debugging
-        PlayGamesPlatform.Activate();
-        PlayGamesPlatform.DebugLogEnabled = true;
+        //PlayGamesPlatform.Activate();
+        //PlayGamesPlatform.DebugLogEnabled = true;
 
         // Attempt to authenticate the player
         if (!s_bIsPlayerAuthenticated) {
