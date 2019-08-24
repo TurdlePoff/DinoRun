@@ -14,8 +14,22 @@ public class PathwayBlocks : MonoBehaviour
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        
-        switch(GetComponentInParent<Spawner>().GetCurrentTheme())
+
+        SetCurrentTheme(GetComponentInParent<Spawner>().GetCurrentTheme());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (-5 > transform.position.x)
+        {
+            transform.position = GetComponentInParent<Spawner>().SendToStart(gameObject);
+        }
+    }
+
+    public void SetCurrentTheme(ECurrentTheme _eTheme)
+    {
+        switch (_eTheme)
         {
             case ECurrentTheme.e_Sand:
                 {
@@ -55,11 +69,5 @@ public class PathwayBlocks : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

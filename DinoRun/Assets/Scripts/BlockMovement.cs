@@ -18,11 +18,5 @@ public class BlockMovement : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + m_vMovementAddition;
-
-        if(-5 > transform.position.x)
-        {
-            GetComponentInParent<Spawner>().SpawnBlock();
-            gameObject.SetActive(false);
-        }
     }
 }

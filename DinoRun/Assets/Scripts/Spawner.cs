@@ -15,6 +15,9 @@ public enum ECurrentTheme
 
 public class Spawner : MonoBehaviour
 {
+    // Number of Zones Passed
+    private int m_iNumberOfZones = 0;
+
     // Theme
     public int m_iNumberOfBlocksBetweenThemes = 100;
     private int m_iCurrentBlock = 0;
@@ -63,7 +66,7 @@ public class Spawner : MonoBehaviour
         return m_eCurrentTheme;
     }
 
-    public void SpawnBlock()
+    public Vector3 SendToStart(GameObject thisObject)
     {
         m_iCurrentBlock += 1;
 
@@ -78,32 +81,76 @@ public class Spawner : MonoBehaviour
             {
                 m_eCurrentTheme = ECurrentTheme.e_Sand;
             }
+            m_iNumberOfZones += 1;
             m_iCurrentBlock = 0;
         }
 
+        int iRandomChanceOfOtherTheme = 0;
+        int iRandomNumber = Random.Range(0, 100);
+        // Closer to 0 or 100 = greater chance of next theme 
+        // 25-75 = current theme only
+
+
         // If block is < 25 spawn some with slight chance of previous theme
-        if(25 > m_iCurrentBlock)
+        if (25 > m_iCurrentBlock)
         {
-            if(ECurrentTheme.e_Sand != m_eCurrentTheme)
+            int iCurrentPercentage = 25 - m_iCurrentBlock;
+            iCurrentPercentage *= 4;
+
+            if(iRandomNumber < iCurrentPercentage)
             {
-                //GameObject Path = GetPooledObject();
-                //if (Path != null)
-                //{
-                //    Path.transform.position = m_ObjectSpawnLocation.transform.position;
-                //    Path.SetActive(true);
-                //}
+                iRandomChanceOfOtherTheme = -1;
+            }
+
+            if (ECurrentTheme.e_Sand != m_eCurrentTheme)
+            {
+                thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme + iRandomChanceOfOtherTheme);
+            }
+            else // Sand = current theme
+            {
+                if (0 == iRandomChanceOfOtherTheme || 0 == m_iNumberOfZones)
+                {
+                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme); 
+                }
+                else
+                {
+                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(ECurrentTheme.e_Lava);
+                }
             }
         }
         // If Block is > 75 spawn some with slight chance of next theme
-
-
-        GameObject Path = GetPooledObject();
-        if (Path != null)
+        else if (75 > m_iCurrentBlock)
         {
-            Path.transform.position = m_ObjectSpawnLocation.transform.position;
-            Path.SetActive(true);
+            int iCurrentPercentage = m_iCurrentBlock - 75;
+            iCurrentPercentage *= 4;
+
+            if (iRandomNumber < iCurrentPercentage)
+            {
+                iRandomChanceOfOtherTheme = 1;
+            }
+
+            if (ECurrentTheme.e_Lava != m_eCurrentTheme)
+            {
+                thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme + iRandomChanceOfOtherTheme);
+            }
+            else
+            {
+                if (0 == iRandomChanceOfOtherTheme)
+                {
+                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme); 
+                }
+                else
+                {
+                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(ECurrentTheme.e_Sand);
+                }
+            }
         }
-        print("Spawn");
+        else
+        {
+            thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
+        }
+
+        return m_ObjectSpawnLocation.transform.position;
     }
 
     public GameObject GetPooledObject()
