@@ -29,6 +29,10 @@ public class PathwayBlocks : MonoBehaviour
 
     public void SetCurrentTheme(ECurrentTheme _eTheme)
     {
+        if(null != m_RefToChild)
+        {
+            Destroy(m_RefToChild);
+        }
         switch (_eTheme)
         {
             case ECurrentTheme.e_Sand:

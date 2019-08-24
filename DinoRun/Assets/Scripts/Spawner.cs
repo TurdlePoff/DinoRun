@@ -12,6 +12,11 @@ public enum ECurrentTheme
     e_Stone,
     e_Lava,
 }
+public enum EEvents
+{
+    e_MissingBlock = 0,
+    e_Tree,
+}
 
 public class Spawner : MonoBehaviour
 {
@@ -28,6 +33,12 @@ public class Spawner : MonoBehaviour
     public GameObject objectToPool;
     public int amountToPool = 100;
     public GameObject m_ObjectSpawnLocation;
+
+
+    // Events
+    bool m_bDidEventOccurLastBlock = false;
+    bool m_bBlockMissing = false;
+    Vector3 m_vMissingBlockOffset = new Vector3(0.0f, 0.0f, -100.0f);
 
 
     // Start is called before the first frame update
@@ -85,11 +96,25 @@ public class Spawner : MonoBehaviour
             m_iCurrentBlock = 0;
         }
 
+        /// Current Theme
+        ChangeBlocksTheme(thisObject);
+
+        // Random Event
+        RandomEventOccur();
+
+        if(m_bBlockMissing)
+        {
+            return m_ObjectSpawnLocation.transform.position + m_vMissingBlockOffset;
+        }
+
+        return m_ObjectSpawnLocation.transform.position;
+    }
+    private void ChangeBlocksTheme(GameObject thisObject)
+    {
         int iRandomChanceOfOtherTheme = 0;
         int iRandomNumber = Random.Range(0, 100);
         // Closer to 0 or 100 = greater chance of next theme 
         // 25-75 = current theme only
-
 
         // If block is < 25 spawn some with slight chance of previous theme
         if (25 > m_iCurrentBlock)
@@ -97,7 +122,7 @@ public class Spawner : MonoBehaviour
             int iCurrentPercentage = 25 - m_iCurrentBlock;
             iCurrentPercentage *= 4;
 
-            if(iRandomNumber < iCurrentPercentage)
+            if (iRandomNumber < iCurrentPercentage)
             {
                 iRandomChanceOfOtherTheme = -1;
             }
@@ -110,7 +135,7 @@ public class Spawner : MonoBehaviour
             {
                 if (0 == iRandomChanceOfOtherTheme || 0 == m_iNumberOfZones)
                 {
-                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme); 
+                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
                 }
                 else
                 {
@@ -137,7 +162,7 @@ public class Spawner : MonoBehaviour
             {
                 if (0 == iRandomChanceOfOtherTheme)
                 {
-                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme); 
+                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
                 }
                 else
                 {
@@ -149,8 +174,55 @@ public class Spawner : MonoBehaviour
         {
             thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
         }
+    }
 
-        return m_ObjectSpawnLocation.transform.position;
+    private void RandomEventOccur()
+    {
+        int iRandomChanceOfEvent = Random.Range(0, 100);
+        m_bBlockMissing = false;
+
+        if (!m_bDidEventOccurLastBlock)
+        {
+            if (100 > m_iNumberOfZones)
+            {
+                if(iRandomChanceOfEvent < m_iNumberOfZones)
+                {
+                    EventToOccur();
+                    m_bDidEventOccurLastBlock = true;
+                }
+            }
+            else
+            {
+                EventToOccur();
+                m_bDidEventOccurLastBlock = true;
+            }
+        }
+        else
+        {
+            m_bDidEventOccurLastBlock = false;
+        }
+    }
+    private void EventToOccur()
+    {
+        int iRandomEventToOccur = Random.Range(0, 1); // Last number is the number of events
+        EEvents eEvent = (EEvents)iRandomEventToOccur;
+        switch(eEvent)
+        {
+            case EEvents.e_MissingBlock:
+                {
+                    m_bBlockMissing = true;
+                    print("BlockMissing");
+                    break;
+                }
+            case EEvents.e_Tree:
+                {
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
     }
 
     public GameObject GetPooledObject()
