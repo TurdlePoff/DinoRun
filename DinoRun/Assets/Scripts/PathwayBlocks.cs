@@ -23,7 +23,8 @@ public class PathwayBlocks : MonoBehaviour
     {
         if (-5 > transform.position.x)
         {
-            transform.position = GetComponentInParent<Spawner>().SendToStart(gameObject);
+            Vector3 tempPos = GetComponentInParent<Spawner>().SendToStart(gameObject);
+            transform.position = new Vector3(Mathf.RoundToInt(tempPos.x), tempPos.y, tempPos.z);
         }
     }
 
