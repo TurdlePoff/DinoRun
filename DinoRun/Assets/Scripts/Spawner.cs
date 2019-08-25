@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public enum ECurrentTheme
 {
@@ -29,11 +30,17 @@ public class Spawner : MonoBehaviour
     private ECurrentTheme m_eCurrentTheme = ECurrentTheme.e_Sand;
 
     // Pooling Pathway
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
-    public int amountToPool = 100;
+    public List<GameObject> pooledPathway;
+    public GameObject Pathway;
+    public int pathwayAmountToPool = 100;
     public GameObject m_ObjectSpawnLocation;
 
+    // Pooling Obsticle
+    public List<GameObject> pooledObsticles;
+    public GameObject ObsticleObjects;
+    public int obsticleAmountToPool = 55;
+    private Vector3 m_vObsticleOffSet = new Vector3(0.0f, 1.0f, 0.0f);
+    private Quaternion m_ObsticleRotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
 
     // Events
     bool m_bDidEventOccurLastBlock = false;
@@ -44,18 +51,27 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pooledObjects = new List<GameObject>();
-        for (int i = 0; i < amountToPool; i++)
+        pooledPathway = new List<GameObject>();
+        for (int i = 0; i < pathwayAmountToPool; i++)
         {
-            GameObject obj = (GameObject)Instantiate(objectToPool, transform);
+            GameObject obj = (GameObject)Instantiate(Pathway, transform);
             obj.SetActive(false);
-            pooledObjects.Add(obj);
+            pooledPathway.Add(obj);
+        }
+
+        // TODO pool list of obsticles
+        pooledObsticles = new List<GameObject>();
+        for (int i = 0; i < obsticleAmountToPool; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(ObsticleObjects, m_ObjectSpawnLocation.transform.position, m_ObsticleRotation, transform);
+            obj.SetActive(false);
+            pooledObsticles.Add(obj);
         }
 
 
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < pooledPathway.Count; i++)
         {
-            GameObject Path = GetPooledObject();
+            GameObject Path = GetPooledPathway();
             if (null != Path)
             {
                 m_iCurrentBlock += 1;
@@ -178,7 +194,7 @@ public class Spawner : MonoBehaviour
 
     private void RandomEventOccur()
     {
-        int iRandomChanceOfEvent = Random.Range(0, 100);
+        int iRandomChanceOfEvent = 0;// Random.Range(0, 100);
         m_bBlockMissing = false;
 
         if (!m_bDidEventOccurLastBlock)
@@ -204,7 +220,7 @@ public class Spawner : MonoBehaviour
     }
     private void EventToOccur()
     {
-        int iRandomEventToOccur = Random.Range(0, 1); // Last number is the number of events
+        int iRandomEventToOccur = Random.Range(0, 2); // Last number is the number of events
         EEvents eEvent = (EEvents)iRandomEventToOccur;
         switch(eEvent)
         {
@@ -216,6 +232,10 @@ public class Spawner : MonoBehaviour
                 }
             case EEvents.e_Tree:
                 {
+                    GameObject obsticle = GetPooledObsticles();
+                    obsticle.SetActive(true);
+                    obsticle.GetComponent<SpawnTree>().SetCurrentTheme(m_eCurrentTheme);
+                    print("SpawnTree");
                     break;
                 }
             default:
@@ -225,15 +245,29 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public GameObject GetPooledObject()
+    public GameObject GetPooledPathway()
     {
         //1
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < pooledPathway.Count; i++)
         {
             //2
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!pooledPathway[i].activeInHierarchy)
             {
-                return pooledObjects[i];
+                return pooledPathway[i];
+            }
+        }
+        //3   
+        return null;
+    }
+    public GameObject GetPooledObsticles()
+    {
+        //1
+        for (int i = 0; i < pooledObsticles.Count; i++)
+        {
+            //2
+            if (!pooledObsticles[i].activeInHierarchy)
+            {
+                return pooledObsticles[i];
             }
         }
         //3   

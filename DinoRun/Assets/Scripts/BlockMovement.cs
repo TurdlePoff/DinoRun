@@ -18,5 +18,11 @@ public class BlockMovement : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + m_vMovementAddition;
+
+        if (-5 > transform.position.x)
+        {
+            Vector3 tempPos = GetComponentInParent<Spawner>().SendToStart(gameObject);
+            transform.position = new Vector3(Mathf.RoundToInt(tempPos.x), tempPos.y, tempPos.z);
+        }
     }
 }

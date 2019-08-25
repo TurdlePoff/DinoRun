@@ -21,18 +21,13 @@ public class PathwayBlocks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (-5 > transform.position.x)
-        {
-            Vector3 tempPos = GetComponentInParent<Spawner>().SendToStart(gameObject);
-            transform.position = new Vector3(Mathf.RoundToInt(tempPos.x), tempPos.y, tempPos.z);
-        }
     }
 
     public void SetCurrentTheme(ECurrentTheme _eTheme)
     {
-        if(null != m_RefToChild)
+        for (int i = 0; i < transform.childCount; ++i)
         {
-            Destroy(m_RefToChild);
+            Destroy(transform.GetChild(i).gameObject);
         }
         switch (_eTheme)
         {
