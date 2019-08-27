@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_vScaleVelocity = Vector3.zero;
 
     // Jumping
-    public float m_fPlayerJumpHeight = 300.0f;
-    public float m_fPlayerHighJumpHeight = 30.0f;
+    private bool m_bJumpEnd = true;
+    public float m_fPlayerJumpHeight = 5.0f;
+    public float m_fPlayerHighJumpHeight = 7.5f;
 
     // RigidBody
     private Rigidbody m_Myrigidbody;
@@ -24,10 +25,13 @@ public class PlayerMovement : MonoBehaviour
     {
         // Ste up the default values
         m_Myrigidbody = GetComponent<Rigidbody>();
-        m_Myrigidbody.centerOfMass = m_Myrigidbody.centerOfMass + new Vector3(0.0f, 0.0f, 0.5f);
+        //m_Myrigidbody.centerOfMass = m_Myrigidbody.centerOfMass + new Vector3(0.0f, 0.0f, 0.5f);
         m_vHalfScale = transform.localScale / 2.0f;
         m_vDefaultScale = transform.localScale;
         m_vStartXZ = transform.position;
+
+        GetComponent<Animator>().SetTrigger("StartRunning");
+        GetComponent<Animator>().speed = 1.0f;
     }
 
     // Update is called once per frame
@@ -44,20 +48,67 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = Vector3.SmoothDamp(transform.localScale, m_vDefaultScale, ref m_vScaleVelocity, 0.5f);
         }
+
+        // Land
+        if (2.0f >= GetComponent<Animator>().speed && m_bJumpEnd)
+        {
+            RaycastHit hit;
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+            {
+                if (hit.transform.gameObject.tag.Contains("Floor"))
+                {
+                    GetComponent<Animator>().speed = 1.0f;
+                }
+            }
+        }
     }
 
     // Normal Jumping
     public void PlayerJump()
     {
-        print("Jump");
-        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight);
+        GetComponent<Animator>().SetTrigger("Jump");
+        GetComponent<Animator>().speed = 1.0f;
+
+        print("Jump Attempt");
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight, ForceMode.Impulse);
+            }
+        }
+
+        m_bJumpEnd = false;
+        Invoke("EndJump", 1.0f);
     }
 
     // High Jumping
     public void PlayerHighJump()
     {
-        print("High Jump");
-        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight);
+        GetComponent<Animator>().SetTrigger("Jump");
+        GetComponent<Animator>().speed = 1.0f;
+
+        print("High Jump Attempt");
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+            }
+        }
+
+        m_bJumpEnd = false;
+        Invoke("EndJump", 2.0f);
+    }
+    // End of Jump
+    private void EndJump()
+    {
+        m_bJumpEnd = true;
     }
 
     // Ducking
