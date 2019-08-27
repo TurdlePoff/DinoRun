@@ -34,12 +34,53 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="_fDistance">The distance covered from the most recent run</param>
     public static void UpdatePlayerLifetimeRunDistance(float _fDistance) {
-        float fCurrentDistance = PlayerPrefs.GetFloat("PlayerRunDistance", 0.0f);
-        PlayerPrefs.SetFloat("PlayerRunDistance", fCurrentDistance + _fDistance);
+        float fCurrentDistance = PlayerPrefs.GetFloat("PlayerLifeRunDistance", 0.0f);
+        PlayerPrefs.SetFloat("PlayerLifeRunDistance", fCurrentDistance + _fDistance);
         // Check for run achievements
     }
 
     private static void CheckForRunAchievements() {
+        // Obtain a reference to the users achievements
+        IAchievement[] achievements = null;
+        Social.LoadAchievements(userAchievements => { achievements = userAchievements; });
+
+        // Check longstrider achievements (only if user does not have highest level)
+
+        // Find that achievement
+        IAchievement bestLongstrider = null;
+        foreach(IAchievement achievement in achievements) {
+            if(achievement.id == SpeedyBoiAchievements.achievement_longstrider_x10000) {
+                bestLongstrider = achievement;
+                break;
+            }
+        }
+
+        // If the achievement cannot be found, escape
+        if (bestLongstrider == null) {
+            Debug.LogError("ERROR: Lifetime run achievements could not been updated.");
+            return;
+        }
+
+        // Next check that the achievement has not been met
+        if (!bestLongstrider.completed) {
+            // Find lifetime run distance
+            float fLifeRun = PlayerPrefs.GetFloat("PlayerLifeRunDistance", 0.0f);
+
+            // Compare to thresholds
+            if(fLifeRun >= 10000.0f) {
+                Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x10000, 100.0, (bool success) => { });
+            }
+            else if(fLifeRun >= 1000.0f) {
+                Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x1000, 100.0, (bool success) => { });
+            }
+            else if(fLifeRun >= 100.0f) {
+                Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x100, 100.0, (bool success) => { });
+            }else if(fLifeRun >= 0.0f) {
+                Social.ReportProgress(SpeedyBoiAchievements.achievement_baby_steps, 100.0, (bool success) => { });
+            }
+        }
+
+
 
     }
 
