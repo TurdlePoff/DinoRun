@@ -62,6 +62,13 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        if(transform.position.y < 0.75f)
+        {
+            // Stop everything in scene
+            // Menu pops up
+            GameManager.s_bIsRunning = false;
+        }
     }
 
     // Normal Jumping
