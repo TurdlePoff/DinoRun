@@ -23,6 +23,8 @@ public class Spawner : MonoBehaviour
 {
     // Number of Zones Passed
     private int m_iNumberOfZones = 0;
+    private int m_iMinObsticleSpawnRate = 10;
+    private int m_iMaxObsticleSpawnRate = 80;
 
     // Theme
     public int m_iNumberOfBlocksBetweenThemes = 100;
@@ -44,6 +46,7 @@ public class Spawner : MonoBehaviour
 
     // Events
     bool m_bDidEventOccurLastBlock = false;
+    bool m_bDidEventOccurLastBlock2 = false;
     bool m_bBlockMissing = false;
     Vector3 m_vMissingBlockOffset = new Vector3(0.0f, 0.0f, -100.0f);
 
@@ -59,16 +62,17 @@ public class Spawner : MonoBehaviour
             pooledPathway.Add(obj);
         }
 
-        // TODO pool list of obsticles
         pooledObsticles = new List<GameObject>();
         for (int i = 0; i < obsticleAmountToPool; i++)
         {
             GameObject obj = (GameObject)Instantiate(ObsticleObjects, m_ObjectSpawnLocation.transform.position + m_vObsticleOffSet, m_ObsticleRotation, transform);
             obj.SetActive(false);
+            obj.transform.localScale *= 0.8f;
             pooledObsticles.Add(obj);
         }
 
-
+        // Spawn Pathway
+        int iSafeZone = 20;
         for (int i = 0; i < pooledPathway.Count; i++)
         {
             GameObject Path = GetPooledPathway();
@@ -77,7 +81,22 @@ public class Spawner : MonoBehaviour
                 m_iCurrentBlock += 1;
                 Path.transform.position = m_ObjectSpawnLocation.transform.position;
                 Path.SetActive(true);
+
+                if (0 > iSafeZone)
+                {
+                    RandomEventOccur();
+                }
+                else
+                {
+                    iSafeZone -= 1;
+                }
+
                 m_ObjectSpawnLocation.transform.position = new Vector3(m_ObjectSpawnLocation.transform.position.x + 1, m_ObjectSpawnLocation.transform.position.y, m_ObjectSpawnLocation.transform.position.z);
+
+                if (m_bBlockMissing)
+                {
+                    Path.transform.position += m_vMissingBlockOffset;
+                }
             }
         }
     }
@@ -216,24 +235,21 @@ public class Spawner : MonoBehaviour
 
     private void RandomEventOccur()
     {
-        int iRandomChanceOfEvent = 0;// Random.Range(0, 100);
+        int iRandomChanceOfEvent = Random.Range(0, 100);
         m_bBlockMissing = false;
 
-        if (!m_bDidEventOccurLastBlock)
+        if (!m_bDidEventOccurLastBlock && !m_bDidEventOccurLastBlock2)
         {
-            if (100 > m_iNumberOfZones)
-            {
-                if(iRandomChanceOfEvent < m_iNumberOfZones)
-                {
-                    EventToOccur();
-                    m_bDidEventOccurLastBlock = true;
-                }
-            }
-            else
+            if(iRandomChanceOfEvent < m_iNumberOfZones + m_iMinObsticleSpawnRate && iRandomChanceOfEvent < m_iMaxObsticleSpawnRate)
             {
                 EventToOccur();
                 m_bDidEventOccurLastBlock = true;
+                m_bDidEventOccurLastBlock2 = true;
             }
+        }
+        else if(m_bDidEventOccurLastBlock2)
+        {
+            m_bDidEventOccurLastBlock2 = false;
         }
         else
         {
