@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockMovement : MonoBehaviour
 {
-    public float m_fMovementSpeed = -0.05f;
+    public float m_fMovementSpeed = -2;
 
     private Vector3 m_vMovementAddition = Vector3.zero;
 
