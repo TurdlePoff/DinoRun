@@ -10,10 +10,14 @@ public class GameManager : MonoBehaviour
     // Runtime variables
     private PlayerMovement m_rPlayer;
     private static bool s_bIsPlayerAuthenticated = false;
+    public static bool s_bIsRunning = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        s_bIsRunning = true; 
+
+
         // Find a reference to the player controller
         GameObject rPlayer = GameObject.Find("Player");
         if (rPlayer) {

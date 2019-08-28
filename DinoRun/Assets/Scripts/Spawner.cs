@@ -216,7 +216,7 @@ public class Spawner : MonoBehaviour
 
     private void RandomEventOccur()
     {
-        int iRandomChanceOfEvent = Random.Range(0, 100);
+        int iRandomChanceOfEvent = 0;// Random.Range(0, 100);
         m_bBlockMissing = false;
 
         if (!m_bDidEventOccurLastBlock)

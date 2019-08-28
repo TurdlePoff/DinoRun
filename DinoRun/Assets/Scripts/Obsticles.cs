@@ -26,4 +26,13 @@ public class Obsticles : MonoBehaviour
     {
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("Hit");
+        if("Player" == other.tag)
+        {
+            GameManager.s_bIsRunning = false;
+        }
+    }
 }

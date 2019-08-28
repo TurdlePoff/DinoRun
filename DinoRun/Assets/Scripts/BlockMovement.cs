@@ -17,6 +17,10 @@ public class BlockMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.s_bIsRunning)
+        {
+            return;
+        }
         transform.position = transform.position + m_vMovementAddition * Time.deltaTime;
 
         if (-5 > transform.position.x)
