@@ -39,30 +39,12 @@ public class GameManager : MonoBehaviour
         // Check for run achievements
     }
 
+    /// <summary>
+    /// Checks and updates run achievements as needed
+    /// </summary>
     private static void CheckForRunAchievements() {
-        // Obtain a reference to the users achievements
-        IAchievement[] achievements = null;
-        Social.LoadAchievements(userAchievements => { achievements = userAchievements; });
-
-        // Check longstrider achievements (only if user does not have highest level)
-
-        // Find that achievement
-        IAchievement bestLongstrider = null;
-        foreach(IAchievement achievement in achievements) {
-            if(achievement.id == SpeedyBoiAchievements.achievement_longstrider_x10000) {
-                bestLongstrider = achievement;
-                break;
-            }
-        }
-
-        // If the achievement cannot be found, escape
-        if (bestLongstrider == null) {
-            Debug.LogError("ERROR: Lifetime run achievements could not been updated.");
-            return;
-        }
-
-        // Next check that the achievement has not been met
-        if (!bestLongstrider.completed) {
+        // If the highest run achievement has been completed, we can leave
+        if (!IsAchievementComplete(SpeedyBoiAchievements.achievement_longstrider_x10000)) {
             // Find lifetime run distance
             float fLifeRun = PlayerPrefs.GetFloat("PlayerLifeRunDistance", 0.0f);
 
@@ -71,17 +53,60 @@ public class GameManager : MonoBehaviour
                 Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x10000, 100.0, (bool success) => { });
             }
             else if(fLifeRun >= 1000.0f) {
-                Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x1000, 100.0, (bool success) => { });
+                // Check the achievement is not complete
+                if (!IsAchievementComplete(SpeedyBoiAchievements.achievement_longstrider_x1000)) {
+                    // Mark complete
+                    Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x1000, 100.0, (bool success) => { });
+                }
             }
             else if(fLifeRun >= 100.0f) {
-                Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x100, 100.0, (bool success) => { });
+                // Check for completion
+                if (!IsAchievementComplete(SpeedyBoiAchievements.achievement_longstrider_x100)) {
+                    Social.ReportProgress(SpeedyBoiAchievements.achievement_longstrider_x100, 100.0, (bool success) => { });
+                }
             }else if(fLifeRun >= 0.0f) {
-                Social.ReportProgress(SpeedyBoiAchievements.achievement_baby_steps, 100.0, (bool success) => { });
+                if (!IsAchievementComplete(SpeedyBoiAchievements.achievement_baby_steps)) {
+                    Social.ReportProgress(SpeedyBoiAchievements.achievement_baby_steps, 100.0, (bool success) => { });
+                }
             }
         }
 
+    }
 
+    /// <summary>
+    /// Checks if an achievement is completed
+    /// </summary>
+    /// <param name="_id">The unique ID of the achievement</param>
+    /// <returns></returns>
+    private static bool IsAchievementComplete(string _id) {
+        // Get achievement reference
+        IAchievement achievement = GetAchievement(SpeedyBoiAchievements.achievement_longstrider_x1000);
+        
+        // Check that it exists
+        if(achievement != null) {
+            return achievement.completed;
+        }
 
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if an achievement with a given ID has been completed.
+    /// </summary>
+    /// <param name="_id"></param>
+    /// <returns></returns>
+    private static IAchievement GetAchievement(string _id) {
+        // Obtain a reference to the users achievements
+        IAchievement[] achievements = null;
+        Social.LoadAchievements(userAchievements => { achievements = userAchievements; });
+
+        // Find that achievement
+        foreach (IAchievement achievement in achievements) {
+            if (achievement.id == _id) {
+                return achievement;
+            }
+        }
+        return null;
     }
 
     /// <summary>
