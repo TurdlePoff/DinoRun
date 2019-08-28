@@ -33,7 +33,7 @@ public class GameOverMenu : MonoBehaviour
         //put code here
     }
 
-    public void OpenShop()
+    public void OpenLeaderboards()
     {
         //put code here
     }
