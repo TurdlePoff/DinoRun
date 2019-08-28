@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private Animator m_rAnimator;
+    private bool m_bIdle = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_rAnimator.SetBool("MainMenu", true);
     }
 
     public void OpenAchievements()
@@ -32,7 +35,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void ShareToFacebook()
+    public void OpenLeaderboard()
     {
         //put code here
     }
@@ -40,5 +43,10 @@ public class MainMenu : MonoBehaviour
     public void ShareToTwitter()
     {
         //put code here
+    }
+
+    public void InteractWithDino()
+    {
+        m_rAnimator.SetTrigger("Jump");
     }
 }
