@@ -1344,12 +1344,12 @@ GameObject:
   - component: {fileID: 1846694670821886751}
   - component: {fileID: 1846694670821886752}
   m_Layer: 5
-  m_Name: SubPanel
+  m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1846694670821886753
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1961,6 +1961,7 @@ GameObject:
   - component: {fileID: 5236683124280406072}
   - component: {fileID: 7553912905559119545}
   - component: {fileID: 4894502582165744031}
+  - component: {fileID: 6265966486118977899}
   m_Layer: 5
   m_Name: TwitterButton (1)
   m_TagString: Untagged
@@ -2065,8 +2066,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1846694670050670830}
-        m_MethodName: ShareToTwitter
+      - m_Target: {fileID: 6265966486118977899}
+        m_MethodName: OpenTwitter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2078,6 +2079,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &6265966486118977899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163548346939600485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd29e4309cfa7845890de767ed88206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6754707713173744944
 GameObject:
   m_ObjectHideFlags: 0
