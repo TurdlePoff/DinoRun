@@ -23,6 +23,8 @@ public class Spawner : MonoBehaviour
 {
     // Number of Zones Passed
     private int m_iNumberOfZones = 0;
+    private int m_iMinObsticleSpawnRate = 10;
+    private int m_iMaxObsticleSpawnRate = 80;
 
     // Theme
     public int m_iNumberOfBlocksBetweenThemes = 100;
@@ -223,7 +225,7 @@ public class Spawner : MonoBehaviour
         {
             if (100 > m_iNumberOfZones)
             {
-                if(iRandomChanceOfEvent < m_iNumberOfZones)
+                if(iRandomChanceOfEvent < m_iNumberOfZones + m_iMinObsticleSpawnRate && iRandomChanceOfEvent < m_iMaxObsticleSpawnRate)
                 {
                     EventToOccur();
                     m_bDidEventOccurLastBlock = true;

@@ -33,37 +33,37 @@ public class PathwayBlocks : MonoBehaviour
         {
             case ECurrentTheme.e_Sand:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/SandBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/SandBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             case ECurrentTheme.e_Dirt:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/DirtBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/DirtBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             case ECurrentTheme.e_Grass:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/GrassBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/GrassBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             case ECurrentTheme.e_Snow:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/SnowBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/SnowBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             case ECurrentTheme.e_CobbleStone:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/CobbleStoneBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/CobbleStoneBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             case ECurrentTheme.e_Stone:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/StoneBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/StoneBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             case ECurrentTheme.e_Lava:
                 {
-                    m_RefToChild = Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Model/BlocksAndTreesPack/Blocks/LavaBlock.prefab", typeof(GameObject)), transform);
+                    m_RefToChild = Instantiate((GameObject)Resources.Load("Blocks/LavaBlock 1", typeof(GameObject)), transform);
                     break;
                 }
             default:
