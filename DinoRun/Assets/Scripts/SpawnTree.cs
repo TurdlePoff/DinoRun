@@ -23,6 +23,10 @@ public class SpawnTree : Obsticles
         {
             Destroy(transform.GetChild(i).gameObject);
         }
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
         switch (_eTheme)
         {
             case ECurrentTheme.e_Sand:
