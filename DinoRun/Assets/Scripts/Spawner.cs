@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour
         pooledObsticles = new List<GameObject>();
         for (int i = 0; i < obsticleAmountToPool; i++)
         {
-            GameObject obj = (GameObject)Instantiate(ObsticleObjects, m_ObjectSpawnLocation.transform.position, m_ObsticleRotation, transform);
+            GameObject obj = (GameObject)Instantiate(ObsticleObjects, m_ObjectSpawnLocation.transform.position + m_vObsticleOffSet, m_ObsticleRotation, transform);
             obj.SetActive(false);
             pooledObsticles.Add(obj);
         }
@@ -132,6 +132,7 @@ public class Spawner : MonoBehaviour
         // Closer to 0 or 100 = greater chance of next theme 
         // 25-75 = current theme only
 
+        PathwayBlocks currentObjectPathwayBlock = thisObject.GetComponent<PathwayBlocks>();
         // If block is < 25 spawn some with slight chance of previous theme
         if (25 > m_iCurrentBlock)
         {
@@ -145,17 +146,26 @@ public class Spawner : MonoBehaviour
 
             if (ECurrentTheme.e_Sand != m_eCurrentTheme)
             {
-                thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme + iRandomChanceOfOtherTheme);
+                if (null != currentObjectPathwayBlock)
+                {
+                    currentObjectPathwayBlock.SetCurrentTheme(m_eCurrentTheme + iRandomChanceOfOtherTheme);
+                }
             }
             else // Sand = current theme
             {
                 if (0 == iRandomChanceOfOtherTheme || 0 == m_iNumberOfZones)
                 {
-                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
+                    if (null != currentObjectPathwayBlock)
+                    {
+                        currentObjectPathwayBlock.SetCurrentTheme(m_eCurrentTheme);
+                    }
                 }
                 else
                 {
-                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(ECurrentTheme.e_Lava);
+                    if (null != currentObjectPathwayBlock)
+                    {
+                        currentObjectPathwayBlock.SetCurrentTheme(ECurrentTheme.e_Lava);
+                    }
                 }
             }
         }
@@ -172,29 +182,41 @@ public class Spawner : MonoBehaviour
 
             if (ECurrentTheme.e_Lava != m_eCurrentTheme)
             {
-                thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme + iRandomChanceOfOtherTheme);
+                if (null != currentObjectPathwayBlock)
+                {
+                    currentObjectPathwayBlock.SetCurrentTheme(m_eCurrentTheme + iRandomChanceOfOtherTheme);
+                }
             }
             else
             {
                 if (0 == iRandomChanceOfOtherTheme)
                 {
-                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
+                    if (null != currentObjectPathwayBlock)
+                    {
+                        currentObjectPathwayBlock.SetCurrentTheme(m_eCurrentTheme);
+                    }
                 }
                 else
                 {
-                    thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(ECurrentTheme.e_Sand);
+                    if (null != currentObjectPathwayBlock)
+                    {
+                        currentObjectPathwayBlock.SetCurrentTheme(ECurrentTheme.e_Sand);
+                    }
                 }
             }
         }
         else
         {
-            thisObject.GetComponent<PathwayBlocks>().SetCurrentTheme(m_eCurrentTheme);
+            if (null != currentObjectPathwayBlock)
+            {
+                currentObjectPathwayBlock.SetCurrentTheme(m_eCurrentTheme);
+            }
         }
     }
 
     private void RandomEventOccur()
     {
-        int iRandomChanceOfEvent = 0;// Random.Range(0, 100);
+        int iRandomChanceOfEvent = Random.Range(0, 100);
         m_bBlockMissing = false;
 
         if (!m_bDidEventOccurLastBlock)
@@ -235,6 +257,7 @@ public class Spawner : MonoBehaviour
                     GameObject obsticle = GetPooledObsticles();
                     obsticle.SetActive(true);
                     obsticle.GetComponent<SpawnTree>().SetCurrentTheme(m_eCurrentTheme);
+                    obsticle.transform.position = m_ObjectSpawnLocation.transform.position + m_vObsticleOffSet;
                     print("SpawnTree");
                     break;
                 }
