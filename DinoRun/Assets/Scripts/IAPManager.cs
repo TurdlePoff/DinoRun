@@ -65,7 +65,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         Debug.LogError(string.Format("ERROR: OnPurchaseFailed. Product: '{0}', PurchaseFailureReason: '{1}'", _product.definition.storeSpecificId, _error));
     }
 
-    void BuyProductID(string _productID) {
+    public void BuyProductID(string _productID) {
         // Check for initialisation
         if (IsInitialised()) {
             // Obtain product reference
