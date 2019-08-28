@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        s_fRunDistance = 0.0f;
         m_ScoreText = GetComponent<TextMeshProUGUI>();
     }
 
@@ -33,13 +34,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Increases the score of the current run by the set amount
-    /// </summary>
-    /// <param name="_fAmount"></param>
-    public static void UpdateScore(float _fAmount) {
-
-    }
 
     /// <summary>
     /// Checks to see if the player has run to a new best distance

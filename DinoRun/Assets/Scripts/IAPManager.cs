@@ -53,7 +53,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Debug.Log("Purchasing product");
 
             // Remove ads
-            PlayerPrefs.SetInt("noAdsPurchased", 1);
+            PlayerPrefs.SetInt("NoAds", 1);
             // Code to remove purchase button
         } else {
             Debug.Log("Unrecognised product");
@@ -65,7 +65,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         Debug.LogError(string.Format("ERROR: OnPurchaseFailed. Product: '{0}', PurchaseFailureReason: '{1}'", _product.definition.storeSpecificId, _error));
     }
 
-    void BuyProductID(string _productID) {
+    public void BuyProductID(string _productID) {
         // Check for initialisation
         if (IsInitialised()) {
             // Obtain product reference

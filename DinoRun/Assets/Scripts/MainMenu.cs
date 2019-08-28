@@ -7,16 +7,34 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Animator m_rAnimator;
     private bool m_bIdle = true;
+    private IAPManager m_rIAP;
 
     // Start is called before the first frame update
     void Start()
     {
         m_rAnimator.SetBool("MainMenu", true);
+        m_rIAP = GetComponent<IAPManager>();
+
+        // remove shop button if ads have been removed
+        CheckForShopButton();
+
+    }
+
+    private void CheckForShopButton() {
+        if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
+            GameObject shopButton = GameObject.Find("ShopButton");
+            if (shopButton) {
+                shopButton.SetActive(false);
+            } else {
+                Debug.Log("Could not find shop button");
+            }
+        }
     }
 
     public void OpenAchievements()
     {
         //put code here
+        GameManager.OpenAchievements();
     }
 
     public void OpenSettings()
@@ -27,6 +45,14 @@ public class MainMenu : MonoBehaviour
     public void OpenShop()
     {
         //put code here
+        m_rIAP.BuyProductID(IAPManager.s_RemoveAds);
+
+        GameObject shopButton = GameObject.Find("ShopButton");
+        if (shopButton) {
+            shopButton.SetActive(false);
+        } else {
+            Debug.Log("Could not find shop button");
+        }
     }
 
     public void PlayGame()

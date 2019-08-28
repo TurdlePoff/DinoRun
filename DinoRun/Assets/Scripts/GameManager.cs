@@ -119,8 +119,8 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public static bool InitialiseGooglePlay() {
         // Activate PlayGames platform and debugging
-        //PlayGamesPlatform.Activate();
-        //PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
+        PlayGamesPlatform.DebugLogEnabled = true;
 
         // Attempt to authenticate the player
         if (!s_bIsPlayerAuthenticated) {
@@ -136,5 +136,40 @@ public class GameManager : MonoBehaviour
 
 
         return false;
+    }
+
+    public static void OpenAchievements() {
+        Social.localUser.Authenticate((bool success) => {
+            if (success) {
+                Debug.Log("You've successfully logged in.");
+                Social.ShowAchievementsUI();
+            } else {
+                Debug.Log("Login failed for some reason.");
+            }
+        });
+    }
+
+    public static void CheckForAd() {
+        // Update ad count
+        int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
+
+        if(iPlayCount == 0) {
+            Adverts.s_Instance.SkippableVideoAd();
+        }
+    }
+
+    public static IEnumerator GameOver() {
+        // Find player and perform animation
+        GameObject player = GameObject.Find("Player");
+        if (player) {
+            player.GetComponent<Animator>().SetTrigger("Death");
+        }
+
+        yield return new WaitForSeconds(3.0f);
+        GameObject gameOver = GameObject.Find("GameOverPanel");
+        if (gameOver) {
+            gameOver.SetActive(true);
+            GameOverMenu.OnGameOver();
+        }
     }
 }
