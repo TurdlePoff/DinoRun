@@ -32,7 +32,8 @@ public class Obsticles : MonoBehaviour
         print("Hit");
         if("Player" == other.tag)
         {
-            GameManager.s_bIsRunning = false;
+            //GameManager.s_bIsRunning = false;
+            StartCoroutine(GameManager.GameOver());
         }
     }
 }

@@ -53,7 +53,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Debug.Log("Purchasing product");
 
             // Remove ads
-            PlayerPrefs.SetInt("noAdsPurchased", 1);
+            PlayerPrefs.SetInt("NoAds", 1);
             // Code to remove purchase button
         } else {
             Debug.Log("Unrecognised product");

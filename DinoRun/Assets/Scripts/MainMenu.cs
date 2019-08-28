@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     }
 
     private void CheckForShopButton() {
-        if(PlayerPrefs.GetInt("noAdsPurchased", 0) == 1) {
+        if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
             GameObject shopButton = GameObject.Find("ShopButton");
             if (shopButton) {
                 shopButton.SetActive(false);

@@ -67,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Stop everything in scene
             // Menu pops up
-            GameManager.s_bIsRunning = false;
+            //GameManager.s_bIsRunning = false;
+            StartCoroutine(GameManager.GameOver());
         }
     }
 

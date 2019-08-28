@@ -12,10 +12,11 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
     private string banner_ad = "bannerAd";
 
     bool testMode = true;
-
+    public static Adverts s_Instance = null;
 
     void Start()
     {
+        s_Instance = this;
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);
 
@@ -40,6 +41,9 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
 
     public void SkippableVideoAd()
     {
+        if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
+            return;
+        }
         OnUnityAdsReady(video_ad);
     }
     public void RewardedVideoAd()

@@ -25,6 +25,7 @@ public class GameOverMenu : MonoBehaviour
     public void OpenAchievements()
     {
         //put code here
+        GameManager.OpenAchievements();
     }
 
     public void OpenSettings()
@@ -45,5 +46,11 @@ public class GameOverMenu : MonoBehaviour
     public void ShareToTwitter()
     {
         //put code here
+    }
+
+    public static void OnGameOver() {
+        GameManager.s_bIsRunning = false;
+        ScoreManager.EndRunComparison();
+        GameManager.CheckForAd();
     }
 }
