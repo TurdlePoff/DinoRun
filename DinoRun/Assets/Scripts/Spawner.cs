@@ -43,6 +43,14 @@ public class Spawner : MonoBehaviour
     public int obsticleAmountToPool = 55;
     private Vector3 m_vObsticleOffSet = new Vector3(0.0f, 1.0f, 0.0f);
     private Quaternion m_ObsticleRotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
+    
+    // Pooling Collectables
+    public List<GameObject> pooledCollectables;
+    public GameObject CollectableObject;
+    public int CollectableAmountToPool = 55;
+    private Vector3 m_vCollectableOffSet = new Vector3(-10.0f, 10.0f, 0.0f);
+    private Quaternion m_CollectableRotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
+    public int m_iCollectableSpawnRate = 50;
 
     // Events
     bool m_bDidEventOccurLastBlock = false;
@@ -69,6 +77,14 @@ public class Spawner : MonoBehaviour
             obj.SetActive(false);
             obj.transform.localScale *= 0.8f;
             pooledObsticles.Add(obj);
+        }
+
+        pooledCollectables = new List<GameObject>();
+        for (int i = 0; i < CollectableAmountToPool; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(CollectableObject, m_ObjectSpawnLocation.transform.position + m_vCollectableOffSet, m_CollectableRotation, transform);
+            obj.SetActive(false);
+            pooledCollectables.Add(obj);
         }
 
         // Spawn Pathway
@@ -136,6 +152,9 @@ public class Spawner : MonoBehaviour
 
         // Random Event
         RandomEventOccur();
+
+        //Spawn Collectable
+        SpawnCollectable();
 
         if(m_bBlockMissing)
         {
@@ -284,6 +303,20 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void SpawnCollectable()
+    {
+        int iRandomEventToOccur = Random.Range(0, 100);
+
+        if(iRandomEventToOccur <= m_iCollectableSpawnRate)
+        {
+            GameObject collectable = GetPooledCollectables();
+            collectable.SetActive(true);
+            //collectable.GetComponent<SpawnTree>().SetCurrentTheme(m_eCurrentTheme);
+            collectable.transform.position = m_ObjectSpawnLocation.transform.position + m_vCollectableOffSet;
+            print("Spawn Collectable");
+        }
+    }
+
     public GameObject GetPooledPathway()
     {
         //1
@@ -307,6 +340,20 @@ public class Spawner : MonoBehaviour
             if (!pooledObsticles[i].activeInHierarchy)
             {
                 return pooledObsticles[i];
+            }
+        }
+        //3   
+        return null;
+    }
+    public GameObject GetPooledCollectables()
+    {
+        //1
+        for (int i = 0; i < pooledCollectables.Count; i++)
+        {
+            //2
+            if (!pooledCollectables[i].activeInHierarchy)
+            {
+                return pooledCollectables[i];
             }
         }
         //3   

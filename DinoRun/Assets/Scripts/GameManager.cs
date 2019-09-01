@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private PlayerMovement m_rPlayer;
     private static bool s_bIsPlayerAuthenticated = false;
     public static bool s_bIsRunning = false;
+    public static int s_iScore = 0;
 
     // Start is called before the first frame update
     void Start()

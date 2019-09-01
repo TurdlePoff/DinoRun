@@ -34,6 +34,10 @@ public class BlockMovement : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
