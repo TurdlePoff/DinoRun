@@ -77,8 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fDuckingTimeDelay: 1
-  m_fPlayerJumpHeight: 3
-  m_fPlayerHighJumpHeight: 4
+  m_fPlayerJumpHeight: 4
+  m_fPlayerHighJumpHeight: 6
   m_rGameOverPanel: {fileID: 0}
 --- !u!114 &8189890019565203121
 MonoBehaviour:

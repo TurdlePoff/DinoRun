@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -251,6 +251,11 @@ MonoBehaviour:
   ObsticleObjects: {fileID: 4755215651205703810, guid: 7f29d6e462b60bf49b6ad936c6366ba1,
     type: 3}
   obsticleAmountToPool: 55
+  pooledCollectables: []
+  CollectableObject: {fileID: 1133897273493789796, guid: 9cfac6e122095ae46b4dcaeed562a796,
+    type: 3}
+  CollectableAmountToPool: 55
+  m_iCollectableSpawnRate: 50
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1174,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8189890019822540136, guid: a3dffa947174ca74287af89aa02f20ff,
+        type: 3}
+      propertyPath: m_rGameOverPanel
+      value: 
+      objectReference: {fileID: 12483079}
+    - target: {fileID: 8189890019822540136, guid: a3dffa947174ca74287af89aa02f20ff,
+        type: 3}
+      propertyPath: m_fPlayerHighJumpHeight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a3dffa947174ca74287af89aa02f20ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1213,10 +1228,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8189890019822540136, guid: a3dffa947174ca74287af89aa02f20ff,
-        type: 3}
-      propertyPath: m_rGameOverPanel
-      value: 
-      objectReference: {fileID: 12483079}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3dffa947174ca74287af89aa02f20ff, type: 3}

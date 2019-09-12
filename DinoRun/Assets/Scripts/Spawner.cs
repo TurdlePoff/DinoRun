@@ -291,6 +291,7 @@ public class Spawner : MonoBehaviour
             case EEvents.e_Tree:
                 {
                     GameObject obsticle = GetPooledObsticles();
+                    if(null == obsticle) { return; }
                     obsticle.SetActive(true);
                     obsticle.GetComponent<SpawnTree>().SetCurrentTheme(m_eCurrentTheme);
                     obsticle.transform.position = m_ObjectSpawnLocation.transform.position + m_vObsticleOffSet;
@@ -311,6 +312,7 @@ public class Spawner : MonoBehaviour
         if(iRandomEventToOccur <= m_iCollectableSpawnRate)
         {
             GameObject collectable = GetPooledCollectables();
+            if(null == collectable) { return; }
             collectable.SetActive(true);
             //collectable.GetComponent<SpawnTree>().SetCurrentTheme(m_eCurrentTheme);
             collectable.transform.position = m_ObjectSpawnLocation.transform.position + m_vCollectableOffSet;

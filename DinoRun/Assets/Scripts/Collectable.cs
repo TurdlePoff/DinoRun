@@ -6,7 +6,7 @@ public class Collectable : MonoBehaviour
 {
     public int ScoreIncrease = 5;
 
-    Vector3 positionAbove = new Vector3(0.0f, 1.0f, 0.0f);
+    Vector3 positionAbove = new Vector3(0.0f, 2.0f, 0.0f);
 
     private bool m_bFoundTargetLocation = false;
 
