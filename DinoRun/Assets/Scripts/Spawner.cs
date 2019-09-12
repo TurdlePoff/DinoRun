@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
+using TMPro;
 
 public enum ECurrentTheme
 {
@@ -22,9 +24,13 @@ public enum EEvents
 public class Spawner : MonoBehaviour
 {
     // Number of Zones Passed
-    private int m_iNumberOfZones = 0;
     private int m_iMinObsticleSpawnRate = 10;
     private int m_iMaxObsticleSpawnRate = 80;
+    public Slider m_BlockProgression;
+    public GameObject m_ZoneOBJ;
+    public GameObject m_ScoreOBJ;
+    private TextMeshProUGUI m_strZone;
+    private TextMeshProUGUI m_strScore;
 
     // Theme
     public int m_iNumberOfBlocksBetweenThemes = 100;
@@ -63,6 +69,27 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.s_iZone = 0;
+
+        m_strZone = m_ZoneOBJ.GetComponent<TextMeshProUGUI>();
+        if (null != m_strZone)
+        {
+            m_strZone.text = GameManager.s_iZone.ToString();
+        }
+        else
+        {
+            print("Failed");
+        }
+        m_strScore = m_ScoreOBJ.GetComponent<TextMeshProUGUI>();
+        if (null != m_strScore)
+        {
+            m_strScore.text = GameManager.s_iScore.ToString();
+        }
+        else
+        {
+            print("Failed");
+        }
+
         pooledPathway = new List<GameObject>();
         for (int i = 0; i < pathwayAmountToPool; i++)
         {
@@ -121,7 +148,10 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (null != m_strScore)
+        {
+            m_strScore.text = GameManager.s_iScore.ToString();
+        }
     }
 
     public ECurrentTheme GetCurrentTheme()
@@ -132,6 +162,8 @@ public class Spawner : MonoBehaviour
     public Vector3 SendToStart(GameObject thisObject)
     {
         m_iCurrentBlock += 1;
+        
+        m_BlockProgression.value = m_iCurrentBlock;
 
         // Change themes
         if (m_iNumberOfBlocksBetweenThemes <= m_iCurrentBlock)
@@ -144,7 +176,11 @@ public class Spawner : MonoBehaviour
             {
                 m_eCurrentTheme = ECurrentTheme.e_Sand;
             }
-            m_iNumberOfZones += 1;
+            GameManager.s_iZone += 1;
+            if (null != m_strZone)
+            {
+                m_strZone.text = GameManager.s_iZone.ToString();
+            }
             m_iCurrentBlock = 0;
         }
 
@@ -192,7 +228,7 @@ public class Spawner : MonoBehaviour
             }
             else // Sand = current theme
             {
-                if (0 == iRandomChanceOfOtherTheme || 0 == m_iNumberOfZones)
+                if (0 == iRandomChanceOfOtherTheme || 0 == GameManager.s_iZone)
                 {
                     if (null != currentObjectPathwayBlock)
                     {
@@ -260,7 +296,7 @@ public class Spawner : MonoBehaviour
 
         if (!m_bDidEventOccurLastBlock && !m_bDidEventOccurLastBlock2)
         {
-            if(iRandomChanceOfEvent < m_iNumberOfZones + m_iMinObsticleSpawnRate && iRandomChanceOfEvent < m_iMaxObsticleSpawnRate)
+            if(iRandomChanceOfEvent < GameManager.s_iZone + m_iMinObsticleSpawnRate && iRandomChanceOfEvent < m_iMaxObsticleSpawnRate)
             {
                 EventToOccur();
                 m_bDidEventOccurLastBlock = true;
