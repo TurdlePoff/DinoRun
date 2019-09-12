@@ -19,10 +19,8 @@ public class GameManager : MonoBehaviour
 
 
         // Find a reference to the player controller
-        GameObject rPlayer = GameObject.Find("Player");
-        if (rPlayer) {
-            m_rPlayer = rPlayer.GetComponent<PlayerMovement>();
-        } else {
+        m_rPlayer = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        if (!m_rPlayer) {
             Debug.LogError("ERROR: GameManager could not find player.");
         }
     }
@@ -158,18 +156,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static IEnumerator GameOver() {
-        // Find player and perform animation
-        GameObject player = GameObject.Find("Player");
-        if (player) {
-            player.GetComponent<Animator>().SetTrigger("Death");
-        }
-
-        yield return new WaitForSeconds(3.0f);
-        GameObject gameOver = GameObject.Find("GameOverPanel");
-        if (gameOver) {
-            gameOver.SetActive(true);
-            GameOverMenu.OnGameOver();
-        }
-    }
 }

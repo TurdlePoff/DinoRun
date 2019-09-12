@@ -21,6 +21,7 @@ public class BlockMovement : MonoBehaviour
         {
             return;
         }
+        
         transform.position = transform.position + m_vMovementAddition * Time.deltaTime;
 
         if (-5 > transform.position.x)
@@ -30,10 +31,11 @@ public class BlockMovement : MonoBehaviour
                 Vector3 tempPos = GetComponentInParent<Spawner>().SendToStart(gameObject);
                 transform.position = new Vector3(Mathf.RoundToInt(tempPos.x), tempPos.y, tempPos.z);
             }
-            else if(GetComponent<Obsticles>())
+            else if (GetComponent<Obstacles>())
             {
                 gameObject.SetActive(false);
             }
         }
+        
     }
 }

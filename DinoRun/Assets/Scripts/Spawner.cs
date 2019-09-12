@@ -36,6 +36,7 @@ public class Spawner : MonoBehaviour
     public GameObject Pathway;
     public int pathwayAmountToPool = 100;
     public GameObject m_ObjectSpawnLocation;
+    [SerializeField] float m_fDistanceBetweenBlocks = 2.0f;
 
     // Pooling Obsticle
     public List<GameObject> pooledObsticles;
@@ -91,7 +92,7 @@ public class Spawner : MonoBehaviour
                     iSafeZone -= 1;
                 }
 
-                m_ObjectSpawnLocation.transform.position = new Vector3(m_ObjectSpawnLocation.transform.position.x + 1, m_ObjectSpawnLocation.transform.position.y, m_ObjectSpawnLocation.transform.position.z);
+                m_ObjectSpawnLocation.transform.position = new Vector3(m_ObjectSpawnLocation.transform.position.x + m_fDistanceBetweenBlocks, m_ObjectSpawnLocation.transform.position.y, m_ObjectSpawnLocation.transform.position.z);
 
                 if (m_bBlockMissing)
                 {
