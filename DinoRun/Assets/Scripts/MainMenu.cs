@@ -24,7 +24,8 @@ public class MainMenu : MonoBehaviour
         if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
             GameObject shopButton = GameObject.Find("ShopButton");
             if (shopButton) {
-                shopButton.SetActive(false);
+                Debug.Log("Shop Exists!");
+                //shopButton.SetActive(false);
             } else {
                 Debug.Log("Could not find shop button");
             }
@@ -49,8 +50,10 @@ public class MainMenu : MonoBehaviour
 
         GameObject shopButton = GameObject.Find("ShopButton");
         if (shopButton) {
-            shopButton.SetActive(false);
-        } else {
+            Debug.Log("Open Shop!");
+            //shopButton.SetActive(false);
+        }
+        else {
             Debug.Log("Could not find shop button");
         }
     }

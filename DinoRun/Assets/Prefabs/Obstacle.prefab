@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4755215651205703839}
   - component: {fileID: 7188202906912933564}
   m_Layer: 0
-  m_Name: Obsticle
+  m_Name: Obstacle
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,3 +80,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e352dd7f214c83447b4ef0b63affe46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sandTree: {fileID: 6465454764633759406, guid: 7077177fccc59eb46aeebf44f8ec594a,
+    type: 3}
+  m_dirtTree: {fileID: 3828845497646589192, guid: 021d38498fe19544aafce7094095bc81,
+    type: 3}
+  m_grassTree: {fileID: 3344954713829749797, guid: bf466bbc1f64b4949ad166c9ab351d46,
+    type: 3}
+  m_snowTree: {fileID: 2848627779281177097, guid: 9a5aeecadac222c4188f8abfe317f61e,
+    type: 3}
+  m_cobblestoneTree: {fileID: 2495676205524561404, guid: c94fb2d544830ae409959e3f5b20cd46,
+    type: 3}
+  m_stoneTree: {fileID: 2432392964364935040, guid: 8f9f9fae6f455614f9e7418f3004fb3d,
+    type: 3}
+  m_lavaTree: {fileID: 5359974912741671705, guid: 03441a4930d6bb349a216b4b267b4cc9,
+    type: 3}

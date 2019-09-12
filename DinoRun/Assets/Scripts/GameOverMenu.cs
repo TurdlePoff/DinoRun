@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
+    [SerializeField] GameObject m_rPausePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +30,13 @@ public class GameOverMenu : MonoBehaviour
         GameManager.OpenAchievements();
     }
 
-    public void OpenSettings()
+    public void OpenSettings(bool _open)
     {
-        //put code here
+        //Open pause panel and pause the game if bool is true
+        m_rPausePanel.SetActive(_open);
+        GameManager.s_bIsRunning = !_open;
     }
-
+    
     public void OpenLeaderboards()
     {
         //put code here

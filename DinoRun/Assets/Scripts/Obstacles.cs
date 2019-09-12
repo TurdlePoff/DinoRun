@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obsticles : MonoBehaviour
+public class Obstacles : MonoBehaviour
 {
     protected GameObject m_RefToChild = null;
     protected Vector3 m_vOffSet = new Vector3(0.0f, 0.0f, 0.0f);
@@ -29,11 +29,10 @@ public class Obsticles : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Hit");
         if("Player" == other.tag)
         {
-            //GameManager.s_bIsRunning = false;
-            StartCoroutine(GameManager.GameOver());
+            print("Hit");
+            StartCoroutine(other.GetComponent<PlayerMovement>().GameOver());
         }
     }
 }
