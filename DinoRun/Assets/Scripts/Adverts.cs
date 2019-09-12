@@ -67,6 +67,7 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         {
             // Do not reward the user for skipping the ad.
             print("Skipped");
+            GameManager.s_bIsRunning = true;
         }
         else if (showResult == ShowResult.Failed)
         {
