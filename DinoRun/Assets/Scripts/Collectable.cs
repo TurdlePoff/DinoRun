@@ -6,7 +6,8 @@ public class Collectable : MonoBehaviour
 {
     public int ScoreIncrease = 5;
 
-    Vector3 positionAbove = new Vector3(0.0f, 2.0f, 0.0f);
+    Vector3 positionAboveFloor = new Vector3(0.0f, 2.0f, 0.0f);
+    Vector3 positionAbove = new Vector3(0.0f, 0.5f, 0.0f);
 
     private bool m_bFoundTargetLocation = false;
 
@@ -39,9 +40,20 @@ public class Collectable : MonoBehaviour
             GameManager.s_iScore += ScoreIncrease;
             gameObject.SetActive(false);
         }
+        else if("Collectable" == other.tag)
+        {
+            // Ignore this object
+        }
         else if(!m_bFoundTargetLocation)
         {
-            transform.position = other.transform.position + positionAbove;
+            if("Floor" == other.tag)
+            {
+                transform.position = other.transform.position + positionAboveFloor;
+            }
+            else
+            {
+                transform.position = other.transform.position + positionAbove;
+            }
 
             GetComponent<Rigidbody>().useGravity = false;
             GetComponent<Rigidbody>().velocity = Vector3.zero;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Obstacles : MonoBehaviour
 {
     protected GameObject m_RefToChild = null;
-    protected Vector3 m_vOffSet = new Vector3(0.0f, 0.0f, 0.0f);
+    protected Vector3 m_vOffSet = new Vector3(0.0f, 0.5f, 0.0f);
     protected Quaternion m_rRotationOffset = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
     protected Vector3 m_vScale = new Vector3(1.35f, 1.35f, 1.35f);
 

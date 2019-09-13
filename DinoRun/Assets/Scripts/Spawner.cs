@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
     public List<GameObject> pooledObsticles;
     public GameObject ObsticleObjects;
     public int obsticleAmountToPool = 55;
-    private Vector3 m_vObsticleOffSet = new Vector3(0.0f, 1.0f, 0.0f);
+    private Vector3 m_vObsticleOffSet = new Vector3(0.0f, 1.5f, 0.0f);
     private Quaternion m_ObsticleRotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
     
     // Pooling Collectables
@@ -116,7 +116,7 @@ public class Spawner : MonoBehaviour
         }
 
         // Spawn Pathway
-        int iSafeZone = 20;
+        int iSafeZone = 10;
         for (int i = 0; i < pooledPathway.Count; i++)
         {
             GameObject Path = GetPooledPathway();
@@ -129,6 +129,8 @@ public class Spawner : MonoBehaviour
                 if (0 > iSafeZone)
                 {
                     RandomEventOccur();
+
+                    SpawnCollectable();
                 }
                 else
                 {
