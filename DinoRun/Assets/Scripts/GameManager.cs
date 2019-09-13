@@ -151,9 +151,10 @@ public class GameManager : MonoBehaviour
 
     public static void CheckForAd() {
         // Update ad count
-        int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
 
-        if(iPlayCount == 0) {
+        int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
+        PlayerPrefs.SetInt("PlayCount", iPlayCount);
+        if (iPlayCount == 0) {
             Adverts.s_Instance.SkippableVideoAd();
         }
     }

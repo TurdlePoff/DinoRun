@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_vStartXZ = Vector3.zero;
     [SerializeField] GameObject m_rGameOverPanel;
 
+    private bool m_bPlayerIsDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         m_animator = GetComponentInChildren<Animator>();
         m_animator.SetTrigger("StartRunning");
-        //m_animator.speed = 1.0f;
+        m_bPlayerIsDead = false;
     }
 
     // Update is called once per frame
@@ -67,12 +69,13 @@ public class PlayerMovement : MonoBehaviour
         //    }
         //}
 
-        if(transform.position.y < 0.75f)
+        if(transform.position.y < 0.75f && !m_bPlayerIsDead)
         {
             // Stop everything in scene
             // Menu pops up
             //GameManager.s_bIsRunning = false;
             StartCoroutine(GameOver());
+            m_bPlayerIsDead = true;
         }
     }
 

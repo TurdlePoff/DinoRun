@@ -20,28 +20,34 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);
 
-        OnUnityAdsReady(video_ad);
+        //OnUnityAdsReady(video_ad);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            OnUnityAdsReady(video_ad);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            OnUnityAdsReady(rewarded_video_ad);
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            OnUnityAdsReady(banner_ad);
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    OnUnityAdsReady(video_ad);
+        //}
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    OnUnityAdsReady(rewarded_video_ad);
+        //}
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    OnUnityAdsReady(banner_ad);
+        //}
+
+        // Undo the purchasing of removing ads // REMOVE BEFORE SUBMISSION
+        if (Input.GetKeyDown(KeyCode.P)) {
+            PlayerPrefs.SetInt("NoAds", 0);
         }
     }
 
     public void SkippableVideoAd()
     {
         if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
+            Debug.Log("No ads for you!");
             return;
         }
         OnUnityAdsReady(video_ad);
@@ -67,6 +73,7 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         {
             // Do not reward the user for skipping the ad.
             print("Skipped");
+            GameManager.s_bIsRunning = true;
         }
         else if (showResult == ShowResult.Failed)
         {
