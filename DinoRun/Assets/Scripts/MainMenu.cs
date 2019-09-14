@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Animator m_rAnimator;
     private bool m_bIdle = true;
     private IAPManager m_rIAP;
+    private bool m_adTest = false;
 
     // Start is called before the first frame update
     void Start()
@@ -46,15 +48,15 @@ public class MainMenu : MonoBehaviour
     public void OpenShop()
     {
         //put code here
-        m_rIAP.BuyProductID(IAPManager.s_RemoveAds);
+        
+    }
 
-        GameObject shopButton = GameObject.Find("ShopButton");
-        if (shopButton) {
-            Debug.Log("Open Shop!");
-            //shopButton.SetActive(false);
-        }
-        else {
-            Debug.Log("Could not find shop button");
+    public void RemoveAds()
+    {
+        if(!m_adTest)
+        {
+            m_adTest = true;
+            m_rIAP.BuyProductID(IAPManager.s_RemoveAds);
         }
     }
 
