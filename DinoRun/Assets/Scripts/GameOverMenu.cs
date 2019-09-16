@@ -53,7 +53,6 @@ public class GameOverMenu : MonoBehaviour
     }
 
     public static void OnGameOver() {
-        GameManager.s_bIsRunning = false;
         ScoreManager.EndRunComparison();
         GameManager.CheckForAd();
     }

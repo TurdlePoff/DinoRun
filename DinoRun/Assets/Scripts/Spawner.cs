@@ -75,6 +75,7 @@ public class Spawner : MonoBehaviour
         if (null != m_strZone)
         {
             m_strZone.text = GameManager.s_iZone.ToString();
+            print("IZone Success: " + m_strZone.text);
         }
         else
         {
@@ -84,6 +85,7 @@ public class Spawner : MonoBehaviour
         if (null != m_strScore)
         {
             m_strScore.text = GameManager.s_iScore.ToString();
+            print("iScore Success: " + m_strScore.text);
         }
         else
         {

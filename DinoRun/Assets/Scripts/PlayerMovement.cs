@@ -146,6 +146,8 @@ public class PlayerMovement : MonoBehaviour
         // Find player and perform animation
         m_animator.SetTrigger("Death");
 
+        GameManager.s_bIsRunning = false;
+
         yield return new WaitForSeconds(1.0f);
         print("GAMEOVER");
         m_rGameOverPanel.SetActive(true);
