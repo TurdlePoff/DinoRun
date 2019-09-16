@@ -34,6 +34,9 @@ public class SpawnTree : Obstacles
         {
             Destroy(transform.GetChild(i).gameObject);
         }
+
+        m_rRotationOffset.y = Random.Range(0.0f, 360.0f);
+
         switch (_eTheme)
         {
             case ECurrentTheme.e_Sand:

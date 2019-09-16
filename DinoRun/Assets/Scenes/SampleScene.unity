@@ -257,8 +257,7 @@ MonoBehaviour:
   pooledCollectables: []
   CollectableObject: {fileID: 1133897273493789796, guid: 9cfac6e122095ae46b4dcaeed562a796,
     type: 3}
-  CollectableAmountToPool: 55
-  m_iCollectableSpawnRate: 50
+  CollectableAmountToPool: 100
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
