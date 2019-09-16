@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_vHalfScale = Vector3.zero;
     private Vector3 m_vDefaultScale = Vector3.zero;
     private Vector3 m_vScaleVelocity = Vector3.zero;
+    public GameObject m_ScoreOBJ;
+    private TextMeshProUGUI m_strScore;
 
     // Jumping
     private bool m_bJumpEnd = true;
@@ -39,6 +42,17 @@ public class PlayerMovement : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_animator.SetTrigger("StartRunning");
         m_bPlayerIsDead = false;
+
+        m_strScore = m_ScoreOBJ.GetComponent<TextMeshProUGUI>();
+        if (null != m_strScore)
+        {
+            m_strScore.text = GameManager.s_iScore.ToString();
+            print("iScore Success: " + m_strScore.text);
+        }
+        else
+        {
+            print("Failed");
+        }
     }
 
     // Update is called once per frame
@@ -147,6 +161,11 @@ public class PlayerMovement : MonoBehaviour
         m_animator.SetTrigger("Death");
 
         GameManager.s_bIsRunning = false;
+
+        if (null != m_strScore)
+        {
+            m_strScore.text = GameManager.s_iScore.ToString();
+        }
 
         yield return new WaitForSeconds(1.0f);
         print("GAMEOVER");

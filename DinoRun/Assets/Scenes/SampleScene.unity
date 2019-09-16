@@ -984,6 +984,12 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3570260707074586664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3570260707074586664, guid: 831a1dbceda86fb4eb24be689506021f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7317262543257749990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5393523399220837687 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5393523399220837687, guid: 831a1dbceda86fb4eb24be689506021f,
@@ -1070,11 +1076,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainGameUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5393523399220837687, guid: 831a1dbceda86fb4eb24be689506021f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1846694670050670826, guid: 831a1dbceda86fb4eb24be689506021f,
         type: 3}
@@ -1223,9 +1224,24 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1981699574226148794, guid: 831a1dbceda86fb4eb24be689506021f,
+    - target: {fileID: 1846694669938581584, guid: 831a1dbceda86fb4eb24be689506021f,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846694669938581584, guid: 831a1dbceda86fb4eb24be689506021f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307796356170788783, guid: 831a1dbceda86fb4eb24be689506021f,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307796356170788783, guid: 831a1dbceda86fb4eb24be689506021f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1251,6 +1267,11 @@ PrefabInstance:
       propertyPath: m_fPlayerHighJumpHeight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8189890019822540136, guid: a3dffa947174ca74287af89aa02f20ff,
+        type: 3}
+      propertyPath: m_ScoreOBJ
+      value: 
+      objectReference: {fileID: 3570260707074586664}
     - target: {fileID: 400002, guid: a3dffa947174ca74287af89aa02f20ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
