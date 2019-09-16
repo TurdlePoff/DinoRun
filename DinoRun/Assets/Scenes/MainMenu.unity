@@ -1096,6 +1096,16 @@ PrefabInstance:
       propertyPath: m_rAnimator
       value: 
       objectReference: {fileID: 308613243}
+    - target: {fileID: 1969571245831422881, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969571245831422881, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6c1c61aaa03974ca549d794ff5f756, type: 3}
 --- !u!1001 &1737136973
