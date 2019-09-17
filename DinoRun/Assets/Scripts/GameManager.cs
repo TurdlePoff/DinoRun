@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     // Runtime variables
     private PlayerMovement m_rPlayer;
-    private static bool s_bIsPlayerAuthenticated = false;
+    public static bool s_bIsPlayerAuthenticated = false;
     public static bool s_bIsRunning = false;
     public static int s_iScore = 0;
     public static int s_iZone = 0;
@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //InitialiseGooglePlay();
+
         s_bIsRunning = true; 
 
 
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
         float fCurrentDistance = PlayerPrefs.GetFloat("PlayerLifeRunDistance", 0.0f);
         PlayerPrefs.SetFloat("PlayerLifeRunDistance", fCurrentDistance + _fDistance);
         // Check for run achievements
+        CheckForRunAchievements();
     }
 
     /// <summary>
@@ -119,12 +122,17 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public static bool InitialiseGooglePlay() {
         // Activate PlayGames platform and debugging
-        //PlayGamesPlatform.Activate();
-        //PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesClientConfiguration config = new
+            PlayGamesClientConfiguration.Builder()
+            .Build();
+        PlayGamesPlatform.InitializeInstance(config);
+
+        PlayGamesPlatform.Activate();
+        PlayGamesPlatform.DebugLogEnabled = true;
 
         // Attempt to authenticate the player
         if (!s_bIsPlayerAuthenticated) {
-            Social.localUser.Authenticate((bool bSuccess) => {
+            PlayGamesPlatform.Instance.Authenticate((bool bSuccess) => { //Social.localUser
                 if (bSuccess) {
                     Debug.Log("Log in successful.");
                     s_bIsPlayerAuthenticated = true;
@@ -136,6 +144,28 @@ public class GameManager : MonoBehaviour
 
 
         return false;
+    }
+
+    public static void GooglePlayGamesInitialisation() {
+        // Activate PlayGames platform and debugging
+        PlayGamesClientConfiguration config = new
+    PlayGamesClientConfiguration.Builder()
+    .Build();
+        PlayGamesPlatform.InitializeInstance(config);
+        PlayGamesPlatform.Activate();
+        PlayGamesPlatform.DebugLogEnabled = true;
+
+        // Attempt to authenticate the player
+        if (!s_bIsPlayerAuthenticated) {
+            PlayGamesPlatform.Instance.Authenticate((bool bSuccess) => { //Social.localUser
+                if (bSuccess) {
+                    Debug.Log("Log in successful.");
+                    s_bIsPlayerAuthenticated = true;
+                } else {
+                    Debug.LogError("ERROR: Unable to complete user authentication.");
+                }
+            });
+        }
     }
 
     public static void OpenAchievements() {
