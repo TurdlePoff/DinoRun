@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
     public List<GameObject> pooledCollectables;
     public GameObject CollectableObject;
     public int CollectableAmountToPool = 100;
-    private Vector3 m_vCollectableOffSet = new Vector3(-10.0f, 10.0f, 0.0f);
+    private Vector3 m_vCollectableOffSet = new Vector3(-10.0f, 40.0f, 0.0f);
     private Quaternion m_CollectableRotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
 
     // Events
@@ -131,12 +131,12 @@ public class Spawner : MonoBehaviour
                 {
                     RandomEventOccur();
 
-                    SpawnCollectable();
+                    if (-3 > iSafeZone)
+                    {
+                        SpawnCollectable();
+                    }
                 }
-                else
-                {
-                    iSafeZone -= 1;
-                }
+                iSafeZone -= 1;
 
                 m_ObjectSpawnLocation.transform.position = new Vector3(m_ObjectSpawnLocation.transform.position.x + m_fDistanceBetweenBlocks, m_ObjectSpawnLocation.transform.position.y, m_ObjectSpawnLocation.transform.position.z);
 

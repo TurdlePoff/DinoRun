@@ -133,6 +133,20 @@ public class PlayerMovement : MonoBehaviour
                 m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
             }
         }
+        else if(Physics.Raycast(transform.position + Vector3.right, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+            }
+        }
+        else if (Physics.Raycast(transform.position - Vector3.right, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+            }
+        }
 
         m_bJumpEnd = false;
         Invoke("EndJump", 2.0f);
