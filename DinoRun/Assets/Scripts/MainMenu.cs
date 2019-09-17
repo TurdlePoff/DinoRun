@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,16 +11,30 @@ public class MainMenu : MonoBehaviour
     private bool m_bIdle = true;
     private IAPManager m_rIAP;
     private bool m_adTest = false;
+    public Text m_DebugText;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Initialise GooglePlay
+        if (!GameManager.s_bIsPlayerAuthenticated || !Social.localUser.authenticated) {
+            GameManager.GooglePlayGamesInitialisation();
+        }
+
+
         m_rAnimator.SetBool("MainMenu", true);
         m_rIAP = GetComponent<IAPManager>();
 
         // remove shop button if ads have been removed
         CheckForShopButton();
 
+    }
+
+    private void Update() {
+        //if (!GameManager.s_bIsPlayerAuthenticated) {
+        //    GameManager.InitialiseGooglePlay();
+        //    Debug.LogWarning("Attempting to initialise Google Play Services");
+        //}
     }
 
     private void CheckForShopButton() {
