@@ -18,10 +18,14 @@ public class Collectable : MonoBehaviour
     private int m_iEggToDisplay;
     private float m_fRotationSpeed = 0.0f;
 
+    private AudioSource m_CollectSound;
+
     // Start is called before the first frame update
     void Start()
     {
         SetUpEggs();
+
+        m_CollectSound = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -69,7 +73,12 @@ public class Collectable : MonoBehaviour
 
             Eggs[m_iEggToDisplay].SetActive(false);
 
-            gameObject.SetActive(false);
+            if (m_CollectSound)
+            {
+                m_CollectSound.pitch = Random.Range(0.75f, 1.25f);
+                m_CollectSound.Play();
+            }
+            Invoke("SetInActive", m_CollectSound.clip.length);
         }
         else if("Collectable" == other.tag)
         {
@@ -103,5 +112,10 @@ public class Collectable : MonoBehaviour
 
             m_bFoundTargetLocation = true;
         }
+    }
+
+    void SetInActive()
+    {
+        gameObject.SetActive(false);
     }
 }

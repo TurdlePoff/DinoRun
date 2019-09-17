@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool m_bPlayerIsDead = false;
 
+    public AudioSource m_JumpEffect;
+    public AudioSource m_DeathEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -111,6 +114,26 @@ public class PlayerMovement : MonoBehaviour
             if (hit.transform.gameObject.tag.Contains("Floor"))
             {
                 m_Myrigidbody.AddForce(Vector3.up * m_fPlayerJumpHeight, ForceMode.Impulse);
+                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+                m_JumpEffect.Play();
+            }
+        }
+        else if (Physics.Raycast(transform.position + Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+                m_JumpEffect.Play();
+            }
+        }
+        else if (Physics.Raycast(transform.position - Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        {
+            if (hit.transform.gameObject.tag.Contains("Floor"))
+            {
+                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+                m_JumpEffect.Play();
             }
         }
 
@@ -131,20 +154,26 @@ public class PlayerMovement : MonoBehaviour
             if (hit.transform.gameObject.tag.Contains("Floor"))
             {
                 m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+                m_JumpEffect.Play();
             }
         }
-        else if(Physics.Raycast(transform.position + Vector3.right, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        else if(Physics.Raycast(transform.position + Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
         {
             if (hit.transform.gameObject.tag.Contains("Floor"))
             {
                 m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+                m_JumpEffect.Play();
             }
         }
-        else if (Physics.Raycast(transform.position - Vector3.right, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        else if (Physics.Raycast(transform.position - Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
         {
             if (hit.transform.gameObject.tag.Contains("Floor"))
             {
                 m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+                m_JumpEffect.Play();
             }
         }
 
@@ -179,6 +208,11 @@ public class PlayerMovement : MonoBehaviour
         if (null != m_strScore)
         {
             m_strScore.text = GameManager.s_iScore.ToString();
+        }
+
+        if(null != m_DeathEffect)
+        {
+            m_DeathEffect.Play();
         }
 
         yield return new WaitForSeconds(1.0f);
