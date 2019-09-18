@@ -33,7 +33,7 @@ public class Obstacles : MonoBehaviour
         {
             print("Hit");
             //StartCoroutine(other.GetComponent<PlayerMovement>().GameOver());
-            other.GetComponent<Animator>().SetTrigger("Death");
+            other.GetComponentInChildren<Animator>().SetTrigger("Death");
         }
     }
 }
