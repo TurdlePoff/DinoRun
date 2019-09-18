@@ -44,22 +44,22 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         }
     }
 
-    public void SkippableVideoAd()
-    {
-        if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
-            Debug.Log("No ads for you!");
-            return;
-        }
-        OnUnityAdsReady(video_ad);
-    }
-    public void RewardedVideoAd()
-    {
-        OnUnityAdsReady(rewarded_video_ad);
-    }
-    public void BannerAd()
-    {
-        OnUnityAdsReady(banner_ad);
-    }
+    //public void SkippableVideoAd()
+    //{
+    //    if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
+    //        Debug.Log("No ads for you!");
+    //        return;
+    //    }
+    //    OnUnityAdsReady(video_ad);
+    //}
+    //public void RewardedVideoAd()
+    //{
+    //    OnUnityAdsReady(rewarded_video_ad);
+    //}
+    //public void BannerAd()
+    //{
+    //    OnUnityAdsReady(banner_ad);
+    //}
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {

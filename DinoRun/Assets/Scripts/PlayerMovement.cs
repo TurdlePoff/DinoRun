@@ -202,26 +202,26 @@ public class PlayerMovement : MonoBehaviour
         m_bDucking = false;
     }
 
-    public IEnumerator GameOver()
-    {
-        // Find player and perform animation
-        m_animator.SetTrigger("Death");
+    //public IEnumerator GameOver()
+    //{
+    //    // Find player and perform animation
+    //    m_animator.SetTrigger("Death");
 
-        GameManager.s_bIsRunning = false;
+    //    GameManager.s_bIsRunning = false;
 
-        if (null != m_strScore)
-        {
-            m_strScore.text = GameManager.s_iScore.ToString();
-        }
+    //    if (null != m_strScore)
+    //    {
+    //        m_strScore.text = GameManager.s_iScore.ToString();
+    //    }
 
-        if(null != m_DeathEffect)
-        {
-            m_DeathEffect.Play();
-        }
+    //    if(null != m_DeathEffect)
+    //    {
+    //        m_DeathEffect.Play();
+    //    }
 
-        yield return new WaitForSeconds(1.0f);
-        print("GAMEOVER");
-        m_rGameOverPanel.SetActive(true);
-        GameOverMenu.OnGameOver();
-    }
+    //    yield return new WaitForSeconds(1.0f);
+    //    print("GAMEOVER");
+    //    m_rGameOverPanel.SetActive(true);
+    //    GameOverMenu.OnGameOver();
+    //}
 }
