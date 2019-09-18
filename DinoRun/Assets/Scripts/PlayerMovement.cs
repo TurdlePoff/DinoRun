@@ -91,7 +91,11 @@ public class PlayerMovement : MonoBehaviour
             // Stop everything in scene
             // Menu pops up
             //GameManager.s_bIsRunning = false;
-            StartCoroutine(GameOver());
+            //StartCoroutine(GameOver());
+            m_animator.SetTrigger("Death");
+            if (null != m_DeathEffect) {
+                m_DeathEffect.Play();
+            }
             m_bPlayerIsDead = true;
         }
     }
