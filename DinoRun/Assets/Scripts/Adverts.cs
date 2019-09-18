@@ -17,10 +17,8 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
     void Start()
     {
         s_Instance = this;
-        Advertisement.AddListener(this);
+        //Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);
-
-        //OnUnityAdsReady(video_ad);
     }
 
     void Update()
@@ -39,25 +37,22 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         //}
 
         // Undo the purchasing of removing ads // REMOVE BEFORE SUBMISSION
-        if (Input.GetKeyDown(KeyCode.P)) {
-            PlayerPrefs.SetInt("NoAds", 0);
-        }
+        //if (Input.GetKeyDown(KeyCode.P)) {
+        //    PlayerPrefs.SetInt("NoAds", 0);
+        //}
     }
 
-    public void SkippableVideoAd()
-    {
-        if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
+    public void SkippableVideoAd() {
+        if (PlayerPrefs.GetInt("NoAds", 0) == 1) {
             Debug.Log("No ads for you!");
             return;
         }
         OnUnityAdsReady(video_ad);
     }
-    public void RewardedVideoAd()
-    {
+    public void RewardedVideoAd() {
         OnUnityAdsReady(rewarded_video_ad);
     }
-    public void BannerAd()
-    {
+    public void BannerAd() {
         OnUnityAdsReady(banner_ad);
     }
 

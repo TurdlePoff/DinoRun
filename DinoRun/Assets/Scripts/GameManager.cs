@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     private static bool IsAchievementComplete(string _id) {
         // Get achievement reference
-        IAchievement achievement = GetAchievement(SpeedyBoiAchievements.achievement_longstrider_x1000);
+        IAchievement achievement = GetAchievement(_id);
         
         // Check that it exists
         if(achievement != null) {
@@ -103,16 +103,26 @@ public class GameManager : MonoBehaviour
     /// <param name="_id"></param>
     /// <returns></returns>
     private static IAchievement GetAchievement(string _id) {
+        if (!Social.localUser.authenticated) {
+            Debug.LogError("ERROR: Cannot retrieve achievement - user is not authenticated.");
+            return null;
+        }
+
         // Obtain a reference to the users achievements
         IAchievement[] achievements = null;
         Social.LoadAchievements(userAchievements => { achievements = userAchievements; });
 
-        // Find that achievement
-        foreach (IAchievement achievement in achievements) {
-            if (achievement.id == _id) {
-                return achievement;
+        // If achievements are found
+        if(achievements != null) {
+            // Find that achievement
+            foreach (IAchievement achievement in achievements) {
+                if (achievement.id == _id) {
+                    return achievement;
+                }
             }
         }
+
+
         return null;
     }
 
