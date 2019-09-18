@@ -54,10 +54,9 @@ public class Spawner : MonoBehaviour
     // Pooling Collectables
     public List<GameObject> pooledCollectables;
     public GameObject CollectableObject;
-    public int CollectableAmountToPool = 55;
-    private Vector3 m_vCollectableOffSet = new Vector3(-10.0f, 10.0f, 0.0f);
+    public int CollectableAmountToPool = 100;
+    private Vector3 m_vCollectableOffSet = new Vector3(-10.0f, 40.0f, 0.0f);
     private Quaternion m_CollectableRotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
-    public int m_iCollectableSpawnRate = 50;
 
     // Events
     bool m_bDidEventOccurLastBlock = false;
@@ -132,12 +131,12 @@ public class Spawner : MonoBehaviour
                 {
                     RandomEventOccur();
 
-                    SpawnCollectable();
+                    if (-3 > iSafeZone)
+                    {
+                        SpawnCollectable();
+                    }
                 }
-                else
-                {
-                    iSafeZone -= 1;
-                }
+                iSafeZone -= 1;
 
                 m_ObjectSpawnLocation.transform.position = new Vector3(m_ObjectSpawnLocation.transform.position.x + m_fDistanceBetweenBlocks, m_ObjectSpawnLocation.transform.position.y, m_ObjectSpawnLocation.transform.position.z);
 
@@ -347,17 +346,10 @@ public class Spawner : MonoBehaviour
 
     private void SpawnCollectable()
     {
-        int iRandomEventToOccur = Random.Range(0, 100);
-
-        if(iRandomEventToOccur <= m_iCollectableSpawnRate)
-        {
-            GameObject collectable = GetPooledCollectables();
-            if(null == collectable) { return; }
-            collectable.SetActive(true);
-            //collectable.GetComponent<SpawnTree>().SetCurrentTheme(m_eCurrentTheme);
-            collectable.transform.position = m_ObjectSpawnLocation.transform.position + m_vCollectableOffSet;
-            print("Spawn Collectable");
-        }
+        GameObject collectable = GetPooledCollectables();
+        if (null == collectable) { return; }
+        collectable.SetActive(true);
+        collectable.transform.position = m_ObjectSpawnLocation.transform.position + m_vCollectableOffSet;
     }
 
     public GameObject GetPooledPathway()
