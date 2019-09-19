@@ -32,7 +32,8 @@ public class Obstacles : MonoBehaviour
         if("Player" == other.tag)
         {
             print("Hit");
-            //StartCoroutine(other.GetComponent<PlayerMovement>().GameOver());
+            GameManager.s_bIsRunning = false;
+            StartCoroutine(other.GetComponent<PlayerMovement>().GameOver());
             other.GetComponentInChildren<Animator>().SetTrigger("Death");
         }
     }

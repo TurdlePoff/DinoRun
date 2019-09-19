@@ -90,13 +90,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Stop everything in scene
             // Menu pops up
-            //GameManager.s_bIsRunning = false;
-            //StartCoroutine(GameOver());
-            m_animator.SetTrigger("Death");
-            if (null != m_DeathEffect) {
-                m_DeathEffect.Play();
-            }
-            m_bPlayerIsDead = true;
+            GameManager.s_bIsRunning = false;
+            StartCoroutine(GameOver());
         }
     }
 
@@ -202,26 +197,31 @@ public class PlayerMovement : MonoBehaviour
         m_bDucking = false;
     }
 
-    //public IEnumerator GameOver()
-    //{
-    //    // Find player and perform animation
-    //    m_animator.SetTrigger("Death");
+    public IEnumerator GameOver()
+    {
+        // Find player and perform animation
+        m_animator.SetTrigger("Death");
+        if (null != m_DeathEffect)
+        {
+            m_DeathEffect.Play();
+        }
+        m_bPlayerIsDead = true;
 
-    //    GameManager.s_bIsRunning = false;
+        GameManager.s_bIsRunning = false;
 
-    //    if (null != m_strScore)
-    //    {
-    //        m_strScore.text = GameManager.s_iScore.ToString();
-    //    }
+        if (null != m_strScore)
+        {
+            m_strScore.text = GameManager.s_iScore.ToString();
+        }
 
-    //    if(null != m_DeathEffect)
-    //    {
-    //        m_DeathEffect.Play();
-    //    }
+        if (null != m_DeathEffect)
+        {
+            m_DeathEffect.Play();
+        }
 
-    //    yield return new WaitForSeconds(1.0f);
-    //    print("GAMEOVER");
-    //    m_rGameOverPanel.SetActive(true);
-    //    GameOverMenu.OnGameOver();
-    //}
+        yield return new WaitForSeconds(1.0f);
+        print("GAMEOVER");
+        m_rGameOverPanel.SetActive(true);
+        GameOverMenu.OnGameOver();
+    }
 }

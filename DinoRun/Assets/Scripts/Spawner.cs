@@ -69,6 +69,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         GameManager.s_iZone = 0;
+        GameManager.s_iScore = 0;
 
         m_strZone = m_ZoneOBJ.GetComponent<TextMeshProUGUI>();
         if (null != m_strZone)
