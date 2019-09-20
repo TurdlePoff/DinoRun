@@ -1602,6 +1602,11 @@ PrefabInstance:
       propertyPath: m_rGameOverPanel
       value: 
       objectReference: {fileID: 12483079}
+    - target: {fileID: 8189890019822540136, guid: a3dffa947174ca74287af89aa02f20ff,
+        type: 3}
+      propertyPath: m_BackgroundGameover
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ed48a861e63c044fbcfc36a078c1e6f, type: 3}
     - target: {fileID: 400002, guid: a3dffa947174ca74287af89aa02f20ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1648,13 +1653,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1851123991083966252, guid: a3dffa947174ca74287af89aa02f20ff,
         type: 3}
-      propertyPath: m_strScore
-      value: 
-      objectReference: {fileID: 7317262543257749991}
-    - target: {fileID: 1851123991083966252, guid: a3dffa947174ca74287af89aa02f20ff,
-        type: 3}
       propertyPath: m_rGameOverPanel
       value: 
       objectReference: {fileID: 12483079}
+    - target: {fileID: 1851123991083966252, guid: a3dffa947174ca74287af89aa02f20ff,
+        type: 3}
+      propertyPath: m_strScore
+      value: 
+      objectReference: {fileID: 7317262543257749991}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3dffa947174ca74287af89aa02f20ff, type: 3}

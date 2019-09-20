@@ -86,6 +86,11 @@ MonoBehaviour:
   m_rGameOverPanel: {fileID: 0}
   m_JumpEffect: {fileID: 8348970451702536135}
   m_DeathEffect: {fileID: 5168923684495745385}
+  m_Background: {fileID: 163160609}
+  m_BackgroundGameplay: {fileID: 8300000, guid: 02bddc0cf8c8888498355c388a22b464,
+    type: 3}
+  m_BackgroundGameover: {fileID: 8300000, guid: 5d9edf928f8d4894d80dcc0e1414c074,
+    type: 3}
 --- !u!114 &8189890019565203121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,6 +1062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5b828a9f3b7fc4a8e155c89f92ef35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rGameOverPanel: {fileID: 0}
+  m_strScore: {fileID: 0}
 --- !u!1 &7076208452507585460
 GameObject:
   m_ObjectHideFlags: 0

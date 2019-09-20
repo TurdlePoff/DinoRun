@@ -29,10 +29,16 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource m_JumpEffect;
     public AudioSource m_DeathEffect;
+    public AudioSource m_Background;
+    public AudioClip m_BackgroundGameplay;
+    public AudioClip m_BackgroundGameover;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_Background.clip = m_BackgroundGameplay;
+        m_Background.Play();
+
         // Ste up the default values
         m_Myrigidbody = GetComponent<Rigidbody>();
         m_rGameOverPanel.SetActive(false);
@@ -206,6 +212,10 @@ public class PlayerMovement : MonoBehaviour
             m_DeathEffect.Play();
         }
         m_bPlayerIsDead = true;
+
+        m_Background.Stop();
+        m_Background.clip = m_BackgroundGameover;
+        m_Background.Play();
 
         GameManager.s_bIsRunning = false;
 
