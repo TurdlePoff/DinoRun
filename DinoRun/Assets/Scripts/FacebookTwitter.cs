@@ -20,9 +20,9 @@ public class FacebookTwitter : MonoBehaviour
     {
         print("OpenTwitter");
         string twitterAddress = "http://twitter.com/intent/tweet";
-        string message = "GET THIS AWERSOME GAME";//text string
-        string descriptionParameter = "Dino Run";
-        string appStoreLink = "https://play.google.com/store/apps/details? id = com.growlgamesstudio.pizZapMania";
+        string message = "GET THIS EPIC ENDLESS RUNNER";//text string
+        string descriptionParameter = "Dino Run by Dinosaur Forestry Club";
+        string appStoreLink = "https://play.google.com/apps/testing/com.DinosaurForestryClub.SpeedyBoi id = com.growlgamesstudio.pizZapMania";
 
         Application.OpenURL(twitterAddress + "?text=" +
         WWW.EscapeURL(message + "\n" +
