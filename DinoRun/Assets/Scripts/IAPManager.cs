@@ -54,7 +54,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
             // Remove ads
             PlayerPrefs.SetInt("NoAds", 1);
-            // Code to remove purchase button
+            Social.ReportProgress(SpeedyBoiAchievements.achievement_badge_of_honour, 100.0, (bool success) => { });
         } else {
             Debug.Log("Unrecognised product");
         }
