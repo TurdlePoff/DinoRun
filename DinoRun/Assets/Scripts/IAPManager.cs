@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.UI;
 
 public class IAPManager : MonoBehaviour, IStoreListener
 {
@@ -57,13 +58,17 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Social.ReportProgress(SpeedyBoiAchievements.achievement_badge_of_honour, 100.0, (bool success) => { });
         } else {
             Debug.Log("Unrecognised product");
+            // Live debug feature
+            GameObject shopButton = GameObject.Find("ShopButton");
+            if (shopButton) {
+                shopButton.GetComponent<Image>().color = Color.green;
+            }
         }
         return PurchaseProcessingResult.Complete;
     }
 
     public void OnPurchaseFailed(Product _product, PurchaseFailureReason _error) {
         Debug.LogError(string.Format("ERROR: OnPurchaseFailed. Product: '{0}', PurchaseFailureReason: '{1}'", _product.definition.storeSpecificId, _error));
-        Application.Quit();
     }
 
     public void BuyProductID(string _productID) {
@@ -78,9 +83,20 @@ public class IAPManager : MonoBehaviour, IStoreListener
                 s_StoreController.InitiatePurchase(product);
             } else {
                 Debug.LogError("Product is could not be found or is unavailable for purchase.");
+
+                // Live debug feature
+                GameObject shopButton = GameObject.Find("ShopButton");
+                if (shopButton) {
+                    shopButton.GetComponent<Image>().color = Color.red;
+                }
             }
         } else {
             Debug.LogError("ERROR: Product could not be purchased because the store is not initialised.");
+            // Live debug feature
+            GameObject shopButton = GameObject.Find("ShopButton");
+            if (shopButton) {
+                shopButton.GetComponent<Image>().color = Color.blue;
+            }
         }
     }
 
