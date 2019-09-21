@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenLeaderboard()
     {
-        //put code here
+        GameManager.OpenLeaderboard();
     }
 
     public void ShareToTwitter()

@@ -189,6 +189,21 @@ public class GameManager : MonoBehaviour
         });
     }
 
+    public static void OpenLeaderboard() {
+        Social.localUser.Authenticate((bool success)=>{
+            if (success) {
+                Debug.Log("Successfully opened leaderboard");
+                Social.ShowLeaderboardUI();
+            } else {
+                Debug.Log("Count not authenticate user to open leaderboard");
+            }
+        });
+    }
+
+    public static void AddScoreToLeaderboard(float _fScore) {
+        Social.ReportScore((long)_fScore, SpeedyBoiAchievements.leaderboard_high_score, (bool success) => { });
+    }
+
     public static void CheckForAd() {
         // Update ad count
 
