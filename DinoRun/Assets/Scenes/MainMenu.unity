@@ -1203,8 +1203,51 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4972092540213700480, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972092540213700480, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972092540213700480, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972092539411539895, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1704614066}
+    - target: {fileID: 4972092539411539895, guid: fa6c1c61aaa03974ca549d794ff5f756,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenTwitter
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6c1c61aaa03974ca549d794ff5f756, type: 3}
+--- !u!1 &1704614065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4972092539411539881, guid: fa6c1c61aaa03974ca549d794ff5f756,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704614064}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1704614066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704614065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd29e4309cfa7845890de767ed88206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1737136973
 PrefabInstance:
   m_ObjectHideFlags: 0

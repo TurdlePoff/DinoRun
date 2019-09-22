@@ -15,6 +15,7 @@ public class GameOverMenu : MonoBehaviour
     public void Retry()
     {
         //put code here
+        GameManager.CheckForAd();
         SceneManager.LoadScene(1);
     }
 
@@ -39,7 +40,7 @@ public class GameOverMenu : MonoBehaviour
     
     public void OpenLeaderboards()
     {
-        //put code here
+        GameManager.OpenLeaderboard();
     }
 
     public void ShareToFacebook()

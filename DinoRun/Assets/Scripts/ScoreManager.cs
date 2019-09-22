@@ -46,7 +46,7 @@ public class ScoreManager : MonoBehaviour
         if (s_fRunDistance >= PlayerPrefs.GetFloat("PlayerBestRunDistance", 0.0f) ){
             // Set the new best run distance
             PlayerPrefs.SetFloat("PlayerBestRunDistance", s_fRunDistance);
-            GameManager.AddScoreToLeaderboard(s_fPlayerScore);
+            GameManager.AddScoreToLeaderboard(GameManager.s_iScore);
         }
     }
 }

@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     private IAPManager m_rIAP;
     private bool m_adTest = false;
     public Text m_DebugText;
+    public GameObject m_rNoAdsButton;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +40,10 @@ public class MainMenu : MonoBehaviour
 
     private void CheckForShopButton() {
         if(PlayerPrefs.GetInt("NoAds", 0) == 1) {
-            GameObject shopButton = GameObject.Find("ShopButton");
+            GameObject shopButton = GameObject.Find("NOADSButton");
             if (shopButton) {
                 Debug.Log("Shop Exists!");
-                //shopButton.SetActive(false);
+                shopButton.SetActive(false);
             } else {
                 Debug.Log("Could not find shop button");
             }
