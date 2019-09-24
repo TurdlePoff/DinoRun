@@ -14,6 +14,21 @@ TextureImporter:
     21300018: ContainerGreenMed
     21300020: ContainerGreenSmall
     21300022: ContainerGreenBig
+    21300024: Empty1024x1024_0
+    21300026: Empty1024x1024_1
+    21300028: Empty1024x1024_2
+    21300030: Empty1024x1024_3
+    21300032: Empty1024x1024_4
+    21300034: Empty1024x1024_5
+    21300036: Empty1024x1024_6
+    21300038: Empty1024x1024_7
+    21300040: Empty1024x1024_8
+    21300042: Empty1024x1024_9
+    21300044: Empty1024x1024_10
+    21300046: Empty1024x1024_11
+    21300048: Empty1024x1024_12
+    21300050: Empty1024x1024_13
+    21300052: Empty1024x1024_14
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -118,241 +133,301 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ContainerRedMed
+      name: Empty1024x1024_0
       rect:
         serializedVersion: 2
         x: 31
-        y: 846
+        y: 1075
         width: 257
         height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 899faf98b6959a140b54d37d79d0630b
+      spriteID: feaa5fb24f9a8f848a8a608816e9566c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerRedSmall
+      name: Empty1024x1024_1
       rect:
         serializedVersion: 2
         x: 324
-        y: 845
+        y: 1074
         width: 129
-        height: 131
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b27a2686310cea41928d2f02bc832ca
+      spriteID: e231045c3bc8d5f47b715d3c04cfd38f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerRedBig
+      name: Empty1024x1024_2
       rect:
         serializedVersion: 2
         x: 487
-        y: 846
+        y: 1075
         width: 514
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b311056dae5d5744aaff52913f36f59
+      spriteID: ade56868e3001c443a0210164dd84cfa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerYellowMed
+      name: Empty1024x1024_3
       rect:
         serializedVersion: 2
         x: 31
-        y: 578
+        y: 807
         width: 257
         height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4236ac370ca04f944819dedf791afcc7
+      spriteID: 3cb4509a4f27ebb458264a0e40dbc335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerYellowSmall
+      name: Empty1024x1024_4
       rect:
         serializedVersion: 2
         x: 324
-        y: 577
+        y: 806
         width: 129
-        height: 131
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73619e3d78a7a534d94a43b4b74cc636
+      spriteID: ee679058af76f4242b69164c1530261a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerYellowBig
+      name: Empty1024x1024_5
       rect:
         serializedVersion: 2
         x: 487
-        y: 578
+        y: 807
         width: 514
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79b4eed21b53c4a4788f086523524307
+      spriteID: 02d02cc835079c64e8a158520b6f5cff
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerBlueMed
+      name: Empty1024x1024_6
       rect:
         serializedVersion: 2
         x: 31
-        y: 310
+        y: 539
         width: 257
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6dffc3f45a7bcb4eab00fec54d67025
+      spriteID: 2af9f49110684ac4a809f271718c0d3d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerBlueSmall
+      name: Empty1024x1024_7
       rect:
         serializedVersion: 2
         x: 324
-        y: 310
+        y: 539
         width: 129
-        height: 130
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b18846e2e891aad41883fb9a8761133b
+      spriteID: be21977e1168aea46b53e751df32f8e3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerBlueBig
+      name: Empty1024x1024_8
       rect:
         serializedVersion: 2
         x: 487
-        y: 310
+        y: 539
         width: 514
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61c0b5ccf2aea62489f125d22cbcdbfa
+      spriteID: 2cff88d0f257ae64abcfe6544cf0b6a8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerGreenMed
+      name: Empty1024x1024_9
       rect:
         serializedVersion: 2
         x: 31
-        y: 42
+        y: 271
         width: 257
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 921af6ece2536ae4cba578a718c897b9
+      spriteID: 844161e31111ca4428f720ae01cb1a12
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerGreenSmall
+      name: Empty1024x1024_10
       rect:
         serializedVersion: 2
         x: 324
-        y: 42
+        y: 271
         width: 129
-        height: 130
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff617f5a7e5a05e4ba7785f58d562122
+      spriteID: 96f26047c977f484f89db264374b8cf0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ContainerGreenBig
+      name: Empty1024x1024_11
       rect:
         serializedVersion: 2
         x: 487
-        y: 42
+        y: 271
         width: 514
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eea9f7be7f19c544b73b0aa9f84f236
+      spriteID: 63ea95d2fbf6e124f85f4970962d1240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Empty1024x1024_12
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 27
+        width: 257
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e7f34f49949c284f8b9bd30099e1bd1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Empty1024x1024_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 26
+        width: 129
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1ddb028da773e448a8cf01f155393d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Empty1024x1024_14
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 27
+        width: 514
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f249c577a6867634d82299839b61c874
       vertices: []
       indices: 
       edges: []

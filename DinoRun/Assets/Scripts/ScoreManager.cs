@@ -12,13 +12,11 @@ public class ScoreManager : MonoBehaviour
     private bool m_bIsRunning = false;
     private static float s_fRunDistance = 0.0f;
     public float m_fRunSpeed = 0.01f;
-    private TextMeshProUGUI m_ScoreText;
 
     // Start is called before the first frame update
     void Start()
     {
         s_fRunDistance = 0.0f;
-        m_ScoreText = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -28,9 +26,7 @@ public class ScoreManager : MonoBehaviour
         if (m_bIsRunning) {
             // Increase how far we've run
             s_fRunDistance += m_fRunSpeed * Time.deltaTime;
-
-            // Update the score
-            m_ScoreText.SetText("Score: " + s_fRunDistance);
+            
         }
     }
 

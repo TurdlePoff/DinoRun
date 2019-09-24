@@ -147,6 +147,7 @@ public class Spawner : MonoBehaviour
                 }
             }
         }
+        m_BlockProgression.value = 0;
     }
 
     // Update is called once per frame

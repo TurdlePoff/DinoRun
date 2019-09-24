@@ -11,8 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_vHalfScale = Vector3.zero;
     private Vector3 m_vDefaultScale = Vector3.zero;
     private Vector3 m_vScaleVelocity = Vector3.zero;
-    public GameObject m_ScoreOBJ;
-    private TextMeshProUGUI m_strScore;
+    [SerializeField] private TextMeshProUGUI m_strScore;
 
     // Jumping
     private bool m_bJumpEnd = true;
@@ -52,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         m_animator.SetTrigger("StartRunning");
         m_bPlayerIsDead = false;
 
-        m_strScore = m_ScoreOBJ.GetComponent<TextMeshProUGUI>();
         if (null != m_strScore)
         {
             m_strScore.text = GameManager.s_iScore.ToString();

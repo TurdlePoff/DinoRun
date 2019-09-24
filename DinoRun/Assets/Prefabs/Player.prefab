@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fDuckingTimeDelay: 1
-  m_ScoreOBJ: {fileID: 0}
+  m_strScore: {fileID: 0}
   m_fPlayerJumpHeight: 4
   m_fPlayerHighJumpHeight: 5
   m_rGameOverPanel: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Background: {fileID: 163160609}
   m_BackgroundGameplay: {fileID: 8300000, guid: 02bddc0cf8c8888498355c388a22b464,
     type: 3}
-  m_BackgroundGameover: {fileID: 8300000, guid: 5d9edf928f8d4894d80dcc0e1414c074,
+  m_BackgroundGameover: {fileID: 8300000, guid: 5ed48a861e63c044fbcfc36a078c1e6f,
     type: 3}
 --- !u!114 &8189890019565203121
 MonoBehaviour:
