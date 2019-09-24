@@ -12,10 +12,16 @@ public class MainMenu : MonoBehaviour
     private IAPManager m_rIAP;
     private bool m_adTest = false;
     public Text m_DebugText;
+    [SerializeField] Toggle m_rAudioToggle;
+    private bool m_bToggleAssigned = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_rAudioToggle.isOn = GameManager.GetIsAudioOn();
+        AudioListener.pause = m_rAudioToggle.isOn;
+        m_bToggleAssigned = true;
+
         // Initialise GooglePlay
         if (!GameManager.s_bIsPlayerAuthenticated || !Social.localUser.authenticated) {
             GameManager.GooglePlayGamesInitialisation();
@@ -27,7 +33,7 @@ public class MainMenu : MonoBehaviour
 
         // remove shop button if ads have been removed
         CheckForShopButton();
-
+        
     }
 
     private void Update() {
@@ -55,9 +61,12 @@ public class MainMenu : MonoBehaviour
         GameManager.OpenAchievements();
     }
 
-    public void OpenSettings()
+    public void ToggleAudio()
     {
+        if (!m_bToggleAssigned)
+            return;
         //put code here
+        GameManager.MuteAudio();
     }
 
     public void OpenShop()

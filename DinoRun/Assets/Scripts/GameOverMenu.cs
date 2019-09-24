@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverMenu : MonoBehaviour
 {
     [SerializeField] GameObject m_rPausePanel;
+    [SerializeField] Toggle m_rAudioToggle;
+    private bool m_bToggleAssigned = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_rAudioToggle.isOn = GameManager.GetIsAudioOn();
+        AudioListener.pause = m_rAudioToggle.isOn;
+        m_bToggleAssigned = true;
     }
     public void Retry()
     {
@@ -39,17 +44,15 @@ public class GameOverMenu : MonoBehaviour
     
     public void OpenLeaderboards()
     {
-        //put code here
+        GameManager.OpenLeaderboard();
     }
-
-    public void ShareToFacebook()
+    
+    public void MuteAudio()
     {
-        //put code here
-    }
+        if (!m_bToggleAssigned)
+            return;
 
-    public void ShareToTwitter()
-    {
-        //put code here
+        GameManager.MuteAudio();
     }
 
     public static void OnGameOver() {

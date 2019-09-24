@@ -21,8 +21,8 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         Advertisement.Initialize(gameId, testMode);
     }
 
-    void Update()
-    {
+    //void Update()
+    //{
         //if (Input.GetKeyDown(KeyCode.E))
         //{
         //    OnUnityAdsReady(video_ad);
@@ -40,7 +40,7 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         //if (Input.GetKeyDown(KeyCode.P)) {
         //    PlayerPrefs.SetInt("NoAds", 0);
         //}
-    }
+    //}
 
     public void SkippableVideoAd() {
         if (PlayerPrefs.GetInt("NoAds", 0) == 1) {

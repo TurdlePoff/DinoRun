@@ -1581,6 +1581,16 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1794223704040788556, guid: 831a1dbceda86fb4eb24be689506021f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794223704040788556, guid: 831a1dbceda86fb4eb24be689506021f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4886018052704412526, guid: 831a1dbceda86fb4eb24be689506021f,
         type: 3}
       propertyPath: m_havePropertiesChanged

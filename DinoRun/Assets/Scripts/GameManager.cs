@@ -13,26 +13,21 @@ public class GameManager : MonoBehaviour
     public static bool s_bIsRunning = false;
     public static int s_iScore = 0;
     public static int s_iZone = 0;
+    public static bool s_bAudioOn = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //InitialiseGooglePlay();
 
-        s_bIsRunning = true; 
-
+        s_bIsRunning = true;
+        s_bAudioOn = (PlayerPrefs.GetInt("AudioOn", 0) == 1 ? true : false);
 
         // Find a reference to the player controller
         m_rPlayer = GameObject.Find("Player").GetComponent<PlayerMovement>();
         if (!m_rPlayer) {
             Debug.LogError("ERROR: GameManager could not find player.");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>
@@ -214,4 +209,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static void MuteAudio()
+    {
+        s_bAudioOn = !s_bAudioOn;
+
+        AudioListener.pause = s_bAudioOn;
+        PlayerPrefs.SetInt("AudioOn", (s_bAudioOn ? 1 : 0));
+    }
+
+    public static bool GetIsAudioOn()
+    {
+        return s_bAudioOn;
+    }
 }
