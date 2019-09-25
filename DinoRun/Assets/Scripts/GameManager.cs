@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+#if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+#endif
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     /// Checks and updates run achievements as needed
     /// </summary>
     private static void CheckForRunAchievements() {
+#if UNITY_ANDROID
         // If the highest run achievement has been completed, we can leave
         if (!IsAchievementComplete(SpeedyBoiAchievements.achievement_longstrider_x10000)) {
             // Find lifetime run distance
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
+#endif
     }
 
     /// <summary>
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
     /// <param name="_id">The unique ID of the achievement</param>
     /// <returns></returns>
     private static bool IsAchievementComplete(string _id) {
+#if UNITY_ANDROID
         // Get achievement reference
         IAchievement achievement = GetAchievement(_id);
         
@@ -88,7 +92,7 @@ public class GameManager : MonoBehaviour
         if(achievement != null) {
             return achievement.completed;
         }
-
+#endif
         return false;
     }
 
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour
     /// <param name="_id"></param>
     /// <returns></returns>
     private static IAchievement GetAchievement(string _id) {
+#if UNITY_ANDROID
         if (!Social.localUser.authenticated) {
             Debug.LogError("ERROR: Cannot retrieve achievement - user is not authenticated.");
             return null;
@@ -117,7 +122,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
+#endif
         return null;
     }
 
@@ -126,6 +131,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public static bool InitialiseGooglePlay() {
+#if UNITY_ANDROID
         // Activate PlayGames platform and debugging
         PlayGamesClientConfiguration config = new
             PlayGamesClientConfiguration.Builder()
@@ -147,11 +153,12 @@ public class GameManager : MonoBehaviour
             });
         }
 
-
+#endif
         return false;
     }
 
     public static void GooglePlayGamesInitialisation() {
+#if UNITY_ANDROID
         // Activate PlayGames platform and debugging
         PlayGamesClientConfiguration config = new
     PlayGamesClientConfiguration.Builder()
@@ -171,9 +178,11 @@ public class GameManager : MonoBehaviour
                 }
             });
         }
+#endif
     }
 
     public static void OpenAchievements() {
+#if UNITY_ANDROID
         Social.localUser.Authenticate((bool success) => {
             if (success) {
                 Debug.Log("You've successfully logged in.");
@@ -182,9 +191,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Login failed for some reason.");
             }
         });
+#endif
     }
 
     public static void OpenLeaderboard() {
+#if UNITY_ANDROID
         Social.localUser.Authenticate((bool success)=>{
             if (success) {
                 Debug.Log("Successfully opened leaderboard");
@@ -193,20 +204,25 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Count not authenticate user to open leaderboard");
             }
         });
+#endif
     }
 
     public static void AddScoreToLeaderboard(float _fScore) {
+#if UNITY_ANDROID
         Social.ReportScore((long)_fScore, SpeedyBoiAchievements.leaderboard_high_score, (bool success) => { });
+#endif
     }
 
     public static void CheckForAd() {
         // Update ad count
+#if UNITY_ANDROID
 
         int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
         PlayerPrefs.SetInt("PlayCount", iPlayCount);
         if (iPlayCount == 0) {
             Adverts.s_Instance.SkippableVideoAd();
         }
+#endif
     }
 
     public static void MuteAudio()

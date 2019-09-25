@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
     /// Checks to see if the player has run to a new best distance
     /// </summary>
     public static void EndRunComparison() {
+#if UNITY_ANDROID
         // Update the lifetime run distance
         GameManager.UpdatePlayerLifetimeRunDistance(s_fRunDistance);
 
@@ -44,5 +45,6 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetFloat("PlayerBestRunDistance", s_fRunDistance);
             GameManager.AddScoreToLeaderboard(s_fPlayerScore);
         }
+#endif
     }
 }

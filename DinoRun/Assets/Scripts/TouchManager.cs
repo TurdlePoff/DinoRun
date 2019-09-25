@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class TouchManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class TouchManager : MonoBehaviour
     private Touch m_LastTouch;
     private Touch[] m_Touches;
     private bool m_bIsSwiping = false;
+    [SerializeField]
+    private TextMeshProUGUI m_rDebugText = null;
 
     [Header("Swipe Events")]
     public UnityEvent onSwipeUp;
@@ -80,6 +83,8 @@ public class TouchManager : MonoBehaviour
             }
 
         }
+
+        m_rDebugText.text = (IsTouching() ? "IS TOUCHING" : "NOT EVEN TOUCHING");
     }
 
     /// <summary>

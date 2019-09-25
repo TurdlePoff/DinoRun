@@ -54,11 +54,6 @@ public class PlayerMovement : MonoBehaviour
         if (null != m_strScore)
         {
             m_strScore.text = GameManager.s_iScore.ToString();
-            print("iScore Success: " + m_strScore.text);
-        }
-        else
-        {
-            print("Failed");
         }
     }
 
@@ -67,14 +62,14 @@ public class PlayerMovement : MonoBehaviour
     {
         //transform.position = new Vector3(m_vStartXZ.x, transform.position.y, m_vStartXZ.z);
         // Scales the ducking
-        if (m_bDucking)
-        {
-            transform.localScale = Vector3.SmoothDamp(transform.localScale, m_vHalfScale, ref m_vScaleVelocity, 0.5f);
-        }
-        else
-        {
-            transform.localScale = Vector3.SmoothDamp(transform.localScale, m_vDefaultScale, ref m_vScaleVelocity, 0.5f);
-        }
+        //if (m_bDucking)
+        //{
+        //    transform.localScale = Vector3.SmoothDamp(transform.localScale, m_vHalfScale, ref m_vScaleVelocity, 0.5f);
+        //}
+        //else
+        //{
+        //    transform.localScale = Vector3.SmoothDamp(transform.localScale, m_vDefaultScale, ref m_vScaleVelocity, 0.5f);
+        //}
 
         // Land
         //if ( m_bJumpEnd)
@@ -90,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         //    }
         //}
 
+        //If dino nfalls down hole
         if(transform.position.y < 0.75f && !m_bPlayerIsDead)
         {
             // Stop everything in scene
@@ -107,9 +103,11 @@ public class PlayerMovement : MonoBehaviour
     // Normal Jumping
     public void PlayerJump()
     {
+        if (m_bPlayerIsDead)
+            return;
+
         m_animator.SetTrigger("Jump");
 
-        print("Jump Attempt");
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
@@ -121,24 +119,24 @@ public class PlayerMovement : MonoBehaviour
                 m_JumpEffect.Play();
             }
         }
-        else if (Physics.Raycast(transform.position + Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
-        {
-            if (hit.transform.gameObject.tag.Contains("Floor"))
-            {
-                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
-                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
-                m_JumpEffect.Play();
-            }
-        }
-        else if (Physics.Raycast(transform.position - Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
-        {
-            if (hit.transform.gameObject.tag.Contains("Floor"))
-            {
-                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
-                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
-                m_JumpEffect.Play();
-            }
-        }
+        //else if (Physics.Raycast(transform.position + Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        //{
+        //    if (hit.transform.gameObject.tag.Contains("Floor"))
+        //    {
+        //        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+        //        m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+        //        m_JumpEffect.Play();
+        //    }
+        //}
+        //else if (Physics.Raycast(transform.position - Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        //{
+        //    if (hit.transform.gameObject.tag.Contains("Floor"))
+        //    {
+        //        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+        //        m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+        //        m_JumpEffect.Play();
+        //    }
+        //}
 
         m_bJumpEnd = false;
         Invoke("EndJump", 1.0f);
@@ -147,6 +145,9 @@ public class PlayerMovement : MonoBehaviour
     // High Jumping
     public void PlayerHighJump()
     {
+        if (m_bPlayerIsDead)
+            return;
+
         m_animator.SetTrigger("Jump");
 
         print("High Jump Attempt");
@@ -161,24 +162,24 @@ public class PlayerMovement : MonoBehaviour
                 m_JumpEffect.Play();
             }
         }
-        else if(Physics.Raycast(transform.position + Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
-        {
-            if (hit.transform.gameObject.tag.Contains("Floor"))
-            {
-                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
-                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
-                m_JumpEffect.Play();
-            }
-        }
-        else if (Physics.Raycast(transform.position - Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
-        {
-            if (hit.transform.gameObject.tag.Contains("Floor"))
-            {
-                m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
-                m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
-                m_JumpEffect.Play();
-            }
-        }
+        //else if(Physics.Raycast(transform.position + Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        //{
+        //    if (hit.transform.gameObject.tag.Contains("Floor"))
+        //    {
+        //        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+        //        m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+        //        m_JumpEffect.Play();
+        //    }
+        //}
+        //else if (Physics.Raycast(transform.position - Vector3.right * 0.1f, transform.TransformDirection(-Vector3.up), out hit, 0.25f))
+        //{
+        //    if (hit.transform.gameObject.tag.Contains("Floor"))
+        //    {
+        //        m_Myrigidbody.AddForce(Vector3.up * m_fPlayerHighJumpHeight, ForceMode.Impulse);
+        //        m_JumpEffect.pitch = Random.Range(0.9f, 1.15f);
+        //        m_JumpEffect.Play();
+        //    }
+        //}
 
         m_bJumpEnd = false;
         Invoke("EndJump", 2.0f);
