@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject m_rGameOverPanel;
 
     private bool m_bPlayerIsDead = false;
+    public bool isDead { get { return m_bPlayerIsDead; } }
 
     public AudioSource m_JumpEffect;
     public AudioSource m_DeathEffect;
