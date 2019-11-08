@@ -5,8 +5,8 @@ using UnityEngine.Advertisements;
 
 public class Adverts : MonoBehaviour, IUnityAdsListener
 {
-    string gameId = "0";
-    
+    string gameId = "3262901";
+
     private string video_ad = "video";
     private string rewarded_video_ad = "rewardedVideo";
     private string banner_ad = "bannerAd";
@@ -17,46 +17,46 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
     void Start()
     {
         s_Instance = this;
-
-#if UNITY_IOS
-        gameId = "3262901";
-        print("Ads Start IOS ID");
-#endif
-
-        Advertisement.AddListener(this);
+        //Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);
-        print("Ads Start function called");
-        print("Ads status: " + PlayerPrefs.GetInt("NoAds", 0));
     }
 
     //void Update()
     //{
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    OnUnityAdsReady(video_ad);
-        //}
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    OnUnityAdsReady(rewarded_video_ad);
-        //}
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    OnUnityAdsReady(banner_ad);
-        //}
-
-        // Undo the purchasing of removing ads // REMOVE BEFORE SUBMISSION
-        //if (Input.GetKeyDown(KeyCode.P)) {
-        //    PlayerPrefs.SetInt("NoAds", 0);
-        //}
+    //if (Input.GetKeyDown(KeyCode.E))
+    //{
+    //    OnUnityAdsReady(video_ad);
+    //}
+    //if (Input.GetKeyDown(KeyCode.R))
+    //{
+    //    OnUnityAdsReady(rewarded_video_ad);
+    //}
+    //if (Input.GetKeyDown(KeyCode.T))
+    //{
+    //    OnUnityAdsReady(banner_ad);
     //}
 
-    public void SkippableVideoAd() {
+    // Undo the purchasing of removing ads // REMOVE BEFORE SUBMISSION
+    //if (Input.GetKeyDown(KeyCode.P)) {
+    //    PlayerPrefs.SetInt("NoAds", 0);
+    //}
+    //}
+
+    public void SkippableVideoAd()
+    {
+        if (PlayerPrefs.GetInt("NoAds", 0) == 1)
+        {
+            Debug.Log("No ads for you!");
+            return;
+        }
         OnUnityAdsReady(video_ad);
     }
-    public void RewardedVideoAd() {
+    public void RewardedVideoAd()
+    {
         OnUnityAdsReady(rewarded_video_ad);
     }
-    public void BannerAd() {
+    public void BannerAd()
+    {
         OnUnityAdsReady(banner_ad);
     }
 
@@ -85,7 +85,7 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
         {
             Advertisement.Show(video_ad);
         }
-        else if(placementId == rewarded_video_ad)
+        else if (placementId == rewarded_video_ad)
         {
             Advertisement.Show(rewarded_video_ad);
         }
