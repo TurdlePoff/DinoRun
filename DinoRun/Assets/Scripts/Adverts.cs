@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class Adverts : MonoBehaviour, IUnityAdsListener
 {
-    string gameId = "3232483";
+    string gameId = "0";
     
     private string video_ad = "video";
     private string rewarded_video_ad = "rewardedVideo";
@@ -17,8 +17,16 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
     void Start()
     {
         s_Instance = this;
-        //Advertisement.AddListener(this);
+
+#if UNITY_IOS
+        gameId = "3262901";
+        print("Ads Start IOS ID");
+#endif
+
+        Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);
+        print("Ads Start function called");
+        print("Ads status: " + PlayerPrefs.GetInt("NoAds", 0));
     }
 
     //void Update()
@@ -43,10 +51,6 @@ public class Adverts : MonoBehaviour, IUnityAdsListener
     //}
 
     public void SkippableVideoAd() {
-        if (PlayerPrefs.GetInt("NoAds", 0) == 1) {
-            Debug.Log("No ads for you!");
-            return;
-        }
         OnUnityAdsReady(video_ad);
     }
     public void RewardedVideoAd() {

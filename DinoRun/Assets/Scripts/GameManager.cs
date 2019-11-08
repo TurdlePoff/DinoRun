@@ -213,16 +213,28 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    public static void CheckForAd() {
+    public static void CheckForAd() 
+    {
+        print("Hello Adverts");
         // Update ad count
-#if UNITY_ANDROID
+//#if UNITY_ANDROID
 
-        int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
-        PlayerPrefs.SetInt("PlayCount", iPlayCount);
-        if (iPlayCount == 0) {
-            Adverts.s_Instance.SkippableVideoAd();
-        }
-#endif
+//        int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
+//        PlayerPrefs.SetInt("PlayCount", iPlayCount);
+//        if (iPlayCount == 0) {
+//            Adverts.s_Instance.SkippableVideoAd();
+//        }
+//#endif
+//#if UNITY_IPHONE
+//        Adverts.s_Instance.SkippableVideoAd();
+//#endif
+//#if UNITY_IPHONE_API
+//        Adverts.s_Instance.SkippableVideoAd();
+//#endif
+//#if UNITY_IOS
+//        Adverts.s_Instance.SkippableVideoAd();
+//#endif
+        Adverts.s_Instance.SkippableVideoAd();
     }
 
     public static void MuteAudio()
