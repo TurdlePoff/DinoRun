@@ -220,9 +220,9 @@ public class GameManager : MonoBehaviour
         int iPlayCount = (PlayerPrefs.GetInt("PlayCount", 0) + 1) % 3;
         PlayerPrefs.SetInt("PlayCount", iPlayCount);
         if (iPlayCount == 0) {
-            Adverts.s_Instance.SkippableVideoAd();
         }
 #endif
+        Adverts.s_Instance.SkippableVideoAd();
     }
 
     public static void MuteAudio()

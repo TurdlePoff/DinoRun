@@ -5,7 +5,7 @@ using UnityEngine.Advertisements;
 
 public class Adverts : MonoBehaviour, IUnityAdsListener
 {
-    string gameId = "3232483";
+    string gameId = "3262901";
     
     private string video_ad = "video";
     private string rewarded_video_ad = "rewardedVideo";
